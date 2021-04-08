@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Route Log In
- 
+
 Route::get('/', 'AdminController@login')->name('login');
 Route::post('/', 'AdminController@postLogin');
 
@@ -30,6 +30,53 @@ Route::prefix('adminMoca')->group(function () {
 
 
 	// source Admin_Route: routes/admin/
+	
+	// route Order in admin
+	
+	Route::prefix('orders')->group(function () {
+		Route::get('/', [
+			'as' => 'orders.index',
+			'uses' => 'OrderController@index'
+		]);
+
+		Route::get('/getOrderDetail/{id}', [
+			'as' => 'orders.getOrderDetail',
+			'uses' => 'OrderController@getOrderDetail'
+		]);
+
+		Route::get('/confirmOrder/{id}', [
+			'as' => 'orders.confirmOrder',
+			'uses' => 'OrderController@confirmOrder'
+		]);
+
+		
+
+		Route::get('/delete/{id}', [
+			'as' => 'orders.delete',
+			'uses' => 'OrderController@deleteOrder'
+		]);
+
+		// route shiper
+		Route::get('/getOrderShipping', [
+			'as' => 'orders.getOrderShipping',
+			'uses' => 'OrderController@getOrderShipping'
+		]);
+
+		Route::get('/boomOrder/{id}', [
+			'as' => 'orders.boomOrder',
+			'uses' => 'OrderController@boomOrder'
+		]);
+
+		Route::get('/deliveredOrder/{id}', [
+			'as' => 'orders.deliveredOrder',
+			'uses' => 'OrderController@deliveredOrder'
+		]);
+
+
+
+
+	});
+
 
 });
 
@@ -45,6 +92,11 @@ Route::prefix('MocaFastfood')->group(function () {
 	Route::get('/getProducts/{id}', [
 		'as' => 'Mocafastfood.products',
 		'uses' => 'HomeController@getProductsbyCate'
+	]);
+
+	Route::get('/shopping', [
+		'as' => 'Mocafastfood.shopping',
+		'uses' => 'HomeController@shopping'
 	]);
 
 	Route::get('/ProductsDetail/{id}', [
@@ -114,6 +166,13 @@ Route::prefix('MocaFastfood')->group(function () {
 	Route::post('/updateAccount/{id}', [
 		'as' => 'Mocafastfood.updateAccount',
 		'uses' => 'HomeController@updateAccount'
+	]);
+
+	// route order
+	Route::post('/addOrder', [
+		'as' => 'Mocafastfood.addOrder',
+		'uses' => 'HomeController@addOrder',
+
 	]);
 
 });

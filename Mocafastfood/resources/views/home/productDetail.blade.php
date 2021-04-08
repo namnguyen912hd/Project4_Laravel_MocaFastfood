@@ -99,7 +99,7 @@
                          ?>
                          <a class="item_add"
                          {{-- href="{{ route('Mocafastfood.productdetail', ['id'=> $product->id]) }}" --}}
-                         href="/" 
+                         href="{{ route('Mocafastfood.LogIn') }}" 
                          >
                        add to cart </a>
                        <?php 

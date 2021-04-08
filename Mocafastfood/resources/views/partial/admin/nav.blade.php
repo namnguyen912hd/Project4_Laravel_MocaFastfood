@@ -79,6 +79,24 @@
             </a>
           </li>
 
+          <li class="nav-item">
+            <a href="{{ route('orders.index') }}" class="nav-link">
+              <i class="fa fa-product-hunt" aria-hidden="true"></i>
+              <p>
+                Order
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{ route('orders.getOrderShipping') }}" class="nav-link">
+              <i class="fa fa-product-hunt" aria-hidden="true"></i>
+              <p>
+                shipping
+              </p>
+            </a>
+          </li>
+
 
         </ul>
       </nav>

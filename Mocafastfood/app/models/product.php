@@ -15,7 +15,6 @@ class product extends Model
     }
     public function tags(){
     	return $this->belongsToMany(Tag::class, 'product_tags', 'product_id','tag_id')->withTimestamps();
-
     }
      public function category()
     {
@@ -25,6 +24,11 @@ class product extends Model
     public function productImages()
     {
         return $this->hasMany(productImage::class,'product_id');
+    }
+
+    public function orders(){
+        return $this->belongsToMany(Order::class, 'order_items', 'product_id','order_id')->withTimestamps();
+
     }
 
 }

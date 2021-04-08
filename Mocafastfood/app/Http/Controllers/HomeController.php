@@ -13,6 +13,8 @@ use App\models\role;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use App\models\user;
+use App\models\order;
+use App\models\orderItem;
 
 class HomeController extends Controller
 {
@@ -20,13 +22,17 @@ class HomeController extends Controller
 	private $product;
 	private $tag;
 	private $user;
+	private $order;
+	private $orderItem;
 
-	public function __construct(Category $category, Product $product, Tag $tag, User $user){
+	public function __construct(Category $category, Product $product, Tag $tag, User $user,Order $order, OrderItem $orderItem){
 
 		$this->category = $category;
 		$this->product = $product;
 		$this->tag = $tag;
 		$this->user = $user;
+		$this->order = $order;
+		$this->orderItem = $orderItem;
 	}
 
 	public function index(){
@@ -47,6 +53,13 @@ class HomeController extends Controller
 		$products = $this->product->where('category_id', $id)->get();
 		$cateName = $this->category->find($id)->name;
 		return view('home.products', compact('categories','products','cateName'));
+	}
+
+	public function shopping()
+	{
+		$categories = $this->category->all();
+		
+		return view('home.shopping', compact('categories'));
 	}
 
 
@@ -124,7 +137,17 @@ class HomeController extends Controller
 	public function showCart()
 	{
 		$carts = session()->get('cart');
-		$total = $this->getTotalinCart($carts);
+		$total = 0;
+		
+		if ( $carts != null) {
+			foreach ($carts as $cart) {
+				$total += $cart['price'] * $cart['quantity'];
+			}
+			$total = $total+17000;
+		}
+		else {
+			$total = 0;
+		}
 		
 		return view('home.cart', compact('carts','total'));
 	}
@@ -193,22 +216,22 @@ class HomeController extends Controller
 	public function postSignUp(Request $request)
 	{
 		try {
-    		DB::beginTransaction();
-    		$roleID = 7;
-    		$user = $this->user->create([
-	            'name'=> $request->name,
-	            'password' =>Hash::make($request->password),
-	            'telnumber' =>$request->telnumber,
-	            'email'=> $request->email
-	        ]);
-	        $user->roles()->attach($roleID);
-	        DB::commit();
-	        return redirect() -> route('Mocafastfood.LogIn');
+			DB::beginTransaction();
+			$roleID = 7;
+			$user = $this->user->create([
+				'name'=> $request->name,
+				'password' =>Hash::make($request->password),
+				'telnumber' =>$request->telnumber,
+				'email'=> $request->email
+			]);
+			$user->roles()->attach($roleID);
+			DB::commit();
+			return redirect() -> route('Mocafastfood.LogIn');
 
-    	} catch (Exception $e) {
-    		DB::rollBack();
-    		Log::error('Message: ' . $e->getMessage() . '--------Line: ' . $e->getLine());
-    	} 	
+		} catch (Exception $e) {
+			DB::rollBack();
+			Log::error('Message: ' . $e->getMessage() . '--------Line: ' . $e->getLine());
+		} 	
 	}
 
 	// log out
@@ -216,7 +239,7 @@ class HomeController extends Controller
 	{
 		session()->flush();
 		$categories = $this->category->all();
-		return view('home.index', compact('categories'));
+		return view('home.log_in');
 	}
 
 	// account
@@ -231,23 +254,52 @@ class HomeController extends Controller
 	public function updateAccount($id,Request $request)
 	{
 		try {
-    		DB::beginTransaction();
-    		$roleID = 7;
-    		$this->user->find($id)->update([
-	            'name'=> $request->name,
-	            'password' =>Hash::make($request->password),
-	            'telnumber' =>$request->telnumber,
-	            'email'=> $request->email
-	        ]);
-	        $user = $this->user->find($id);
-	        $user->roles()->sync($roleID);
-	        DB::commit();
-	        return redirect() -> route('Mocafastfood.Account');
+			DB::beginTransaction();
+			$roleID = 7;
+			$this->user->find($id)->update([
+				'name'=> $request->name,
+				'password' =>Hash::make($request->password),
+				'telnumber' =>$request->telnumber,
+				'email'=> $request->email
+			]);
+			$user = $this->user->find($id);
+			$user->roles()->sync($roleID);
+			DB::commit();
+			return redirect() -> route('Mocafastfood.Account');
 
-    	} catch (Exception $e) {
-    		DB::rollBack();
-    		Log::error('Message: ' . $e->getMessage() . '--------Line: ' . $e->getLine());
-    	} 	
+		} catch (Exception $e) {
+			DB::rollBack();
+			Log::error('Message: ' . $e->getMessage() . '--------Line: ' . $e->getLine());
+		} 	
+	}
+
+	// order
+	public function addOrder(Request $request)
+	{
+		$user = Auth::user();
+		$order = $this->order->create([
+			'user_id'=> $user->id,
+			'status' => "Chờ xác nhận",
+			'shippingFee' =>17000,
+			'receivingAddress'=> $request->receivingAddress,
+			'telnumber' => $request->telnumber,
+			'receiver' => $request->receiver,
+			'note' => $request->note
+		]); 
+		$carts = session()->get('cart');
+		foreach ($carts as $cart) {
+			$this->orderItem->create([
+				'product_id'=> $cart['productID'],
+				'order_id' => $order->id,
+				'quantity' => $cart['quantity'],
+				'unitprice'=> $cart['price'],
+			]); 
+		}
+
+		session()->forget('cart');
+
+		return redirect() -> route('Mocafastfood.showCart');
+		
 	}
 
 

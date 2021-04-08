@@ -70,25 +70,26 @@ if( $carts !=null){
       </div>
       <div class="col-md-8 address_form">
         <h4>Thông tin vận chuyện:</h4>
-        <form action="payment.html" method="post" class="creditly-card-form shopf-sear-headinfo_form">
+        <form action="{{ route('Mocafastfood.addOrder') }}" method="post" class="creditly-card-form shopf-sear-headinfo_form">
+          @csrf       
           <div class="creditly-wrapper wrapper">
             <div class="information-wrapper">
               <div class="first-row form-group">
                 <div class="controls">
                   <label class="control-label">Người nhận: </label>
-                  <input class="billing-address-name form-control" type="text" name="name" placeholder="nhập tên">
+                  <input class="billing-address-name form-control" type="text" name="receiver" placeholder="nhập tên">
                 </div>
                 <div class="card_number_grids">
                   <div class="card_number_grid_left">
                     <div class="controls">
                       <label class="control-label">Số điện thoại:</label>
-                      <input class="form-control" type="text" placeholder="nhập số điện thoại">
+                      <input class="form-control" type="text" name="telnumber" placeholder="nhập số điện thoại">
                     </div>
                   </div>
                   <div class="card_number_grid_right">
                     <div class="controls">
                       <label class="control-label">Địa chỉ nhận (Chỉ ship khu vực Gia Lộc): </label>
-                      <input class="form-control" type="text" placeholder="huyện Gia Lộc, tỉnh Hải Dương" style="width: 60%">
+                      <input class="form-control" type="text" name="receivingAddress" placeholder="huyện Gia Lộc, tỉnh Hải Dương" style="width: 60%">
 
                     </div>
                   </div>
@@ -100,7 +101,7 @@ if( $carts !=null){
                 </div>
                 <div class="controls">
                   <label class="control-label">Ghi chú: </label><br>
-                  <textarea id="w3review" name="w3review" rows="4" cols="50">
+                  <textarea id="w3review" name="note" rows="4" cols="50">
 
                   </textarea>
                 </div>
@@ -125,7 +126,7 @@ if( $carts !=null){
   <div class="col-md-12">
     <h2 style="text-align: center; padding: 3em;">
       Bạn chưa có sản phẩn nào trong giỏ hàng !! tiếp tục 
-      <a href="" style="color: #EFA52C">mua sắm</a>
+      <a href="{{ route('Mocafastfood.shopping') }}" style="color: #EFA52C">mua sắm</a>
     </h2>
   </div>
 </div>

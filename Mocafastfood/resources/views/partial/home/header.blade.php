@@ -15,7 +15,7 @@
 
                             <li class="active"><a data-hover="Home" href="{{ route('Mocafastfood.index') }}">Home</a></li>
                             <li><a data-hover="About" href="/Moca/Index" class="scroll">About</a></li>
-                            <li><a data-hover="Gallery" href="{{ route('Mocafastfood.products', ['id'=> 1 ]) }}" >Gallery</a></li>
+                            <li><a data-hover="Gallery" href="{{ route('Mocafastfood.shopping') }}" >Gallery</a></li>
                             <li><a data-hover="Contact" href="/Moca/Index" class="scroll">Contact</a></li>
                             
                             <?php
