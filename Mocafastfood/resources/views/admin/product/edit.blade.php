@@ -79,7 +79,7 @@
 
             <div class="form-group">
               <label >Mô tả</label>
-              <textarea class="form-control" name="contentPro" rows="3" >
+              <textarea class="form-control" id="textEditor" name="contentPro" rows="3" >
                 {{$product->content}}
               </textarea>
             </div>
@@ -99,5 +99,7 @@
 @section('js')
   <script src="{{ asset('vendors/select2/select2.min.js') }}"></script>
   <script src="{{ asset('vendors/product/product.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('vendors/tinymce/tinymce.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('vendors/tinymce/init_tinymce.js') }}"></script>
 @endsection
 

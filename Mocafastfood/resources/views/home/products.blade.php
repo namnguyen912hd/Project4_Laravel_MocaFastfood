@@ -32,6 +32,7 @@
             <h4 style="color:#d8703f">Các sản phẩm của danh mục: {{$cateName}}</h4>
           </div>
         </div>
+        @if (isset($products))
         @foreach ($products as $product)
         <div class="col-md-4 products-right-grids-bottom-grid">
           <div class="new-collections-grid1 products-right-grid1 animated wow " data-wow-delay=".5s">
@@ -42,7 +43,9 @@
               </div>
 
             </div>
-            <h4><a href="{{ route('Mocafastfood.productdetail', ['id'=> $product->id]) }}">{{$product->name}}</a></h4>
+            <div style="height: 36px">
+              <h4><a href="{{ route('Mocafastfood.productdetail', ['id'=> $product->id]) }}">{{$product->name}}</a></h4>
+            </div>
             <p>--------</p>
             <div class="simpleCart_shelfItem products-right-grid1-add-cart">
               <p>
@@ -74,10 +77,15 @@
        </div>
      </div>
      @endforeach
-
-   </div>
-   <div class="clearfix"> </div>
- </div>
+     @endif
+     <div class="row">
+      <div class="col-md-12">
+        {{ $products -> links() }}
+      </div>
+    </div>
+  </div>
+  <div class="clearfix"> </div>
+</div>
 
 </div>
 <div class="clearfix"> </div>

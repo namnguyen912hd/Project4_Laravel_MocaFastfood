@@ -70,7 +70,7 @@
 
             <div class="form-group">
               <label >Mô tả</label>
-              <textarea class="form-control @error('contentPro') is-invalid @enderror" name="contentPro" rows="3">value="{{old('contentPro')}}"</textarea>
+              <textarea class="form-control @error('contentPro') is-invalid @enderror" name="contentPro" id="textEditor" rows="3">value="{{old('contentPro')}}"</textarea>
               @error('contentPro')
               <div class="alert alert-danger">{{ $message }}</div>
               @enderror
@@ -91,5 +91,7 @@
 @section('js')
 <script src="{{ asset('vendors/select2/select2.min.js') }}"></script>
 <script src="{{ asset('vendors/product/product.js') }}"></script>
+<script type="text/javascript" src="{{ asset('vendors/tinymce/tinymce.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('vendors/tinymce/init_tinymce.js') }}"></script>
 @endsection
 

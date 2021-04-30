@@ -10,9 +10,10 @@ use App\models\order;
 use App\models\orderItem;
 use App\models\product;
 use App\models\user;
-
+use App\Traits\DeleteModelTrait;
 class OrderController extends Controller
 {
+	use DeleteModelTrait;
 	private $order;
 	private $product;
 	private $orderItem;
@@ -53,9 +54,8 @@ class OrderController extends Controller
 
 	public function deleteOrder($id)
 	{
-		$this->order->find($id)->delete();
-		$this->orderItem->find($id)->delete();
-		return redirect() -> route('orders.index');
+
+		return $this->DeleteModelTrait($id,$this->order);
 	}
 
     // shipper
@@ -80,5 +80,6 @@ class OrderController extends Controller
 		$order->save();
 		return redirect() -> route('orders.getOrderShipping');
 	}
+
 
 }

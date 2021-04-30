@@ -1,4 +1,4 @@
-<?php 
+<?php  
 
 Route::prefix('adminMoca/menus')->group(function () {
 		Route::get('/', [

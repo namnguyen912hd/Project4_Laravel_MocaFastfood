@@ -32,6 +32,7 @@
             <h4 style="color:#d8703f">Các sản phẩm của tag: {{$tagName}}</h4>
           </div>
         </div>
+        @if (isset($products))
         @foreach ($products as $product)
         <div class="col-md-4 products-right-grids-bottom-grid">
           <div class="new-collections-grid1 products-right-grid1 animated wow " data-wow-delay=".5s">
@@ -67,14 +68,15 @@
                <?php 
              }
              ?>
-                </p>
-            </div>
-          </div>
-      </div>
-      @endforeach
-      </div>
+           </p>
+         </div>
+       </div>
+     </div>
+     @endforeach
+     @endif
+   </div>
    <div class="clearfix"> </div>
-  </div>
+ </div>
 </div>
 <div class="clearfix"> </div>
 </div>

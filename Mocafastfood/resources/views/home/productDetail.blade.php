@@ -126,12 +126,24 @@
                   <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
                     <ul id="myTab" class="nav nav-tabs" role="tablist">
                       <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Description</a></li>
-                      <li role="presentation"><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">Reviews(2)</a></li>
+                      {{-- <li role="presentation"><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">Reviews(2)</a></li> --}}
                     </ul>
                     <div id="myTabContent" class="tab-content">
                       <div role="tabpanel" class="tab-pane fade in active bootstrap-tab-text" id="home" aria-labelledby="home-tab">
                         <h5>{{$product->name}}</h5>
-                        <p>{{$product->content}}</p>
+                        <div id="mota">
+                        	{{-- @php
+                        		echo '<textarea>'. htmlentities($product->content) . '</textarea>'
+                           @endphp       --}}      
+                           {!! $product->content !!}       
+                         </div>
+                         {{-- <script>
+                          function myFunction() {
+                            var x = document.getElementById("myList").innerHTML;
+                            alert(x);
+                            document.getElementById("demo").innerHTML = x;
+                          }
+                        </script> --}}
                       </div>
                       <div role="tabpanel" class="tab-pane fade bootstrap-tab-text" id="profile" aria-labelledby="profile-tab">
                         <div class="bootstrap-tab-text-grids">
@@ -191,20 +203,20 @@
                 <div class="new-collections-grids">
                   <div class="row">
                     <div class="col-md-12">
-                     <?php
-
-                     if(count($relatedProducts) <= 4){ 
-                       ?>
-                       @foreach ($relatedProducts as $relatedProduct)
-                       <div class="col-md-3 products-right-grids-bottom-grid">
+                      @if (isset($relatedProducts))
+                      @foreach ($relatedProducts as $relatedProduct)
+                      <div class="col-md-3 products-right-grids-bottom-grid">
                         <div class="new-collections-grid1 products-right-grid1 animated wow " data-wow-delay=".5s">
                           <div class="new-collections-grid1-image">
                             <a href="single.html" class="product-image"><img src="{{$relatedProduct->feature_image_path}}" alt=" " class="img-responsive" style="height: 260px"></a>
                             <div class="new-collections-grid1-image-pos products-right-grids-pos">
                               <a href="{{ route('Mocafastfood.productdetail', ['id'=> $relatedProduct->id]) }}">Quick View</a>
                             </div>
+
                           </div>
-                          <h4><a href="{{ route('Mocafastfood.productdetail', ['id'=> $relatedProduct->id]) }}">{{$relatedProduct->name}}</a></h4>
+                          <div style="height: 36px">
+                            <h4><a href="{{ route('Mocafastfood.productdetail', ['id'=> $relatedProduct->id]) }}">{{$relatedProduct->name}}</a></h4>
+                          </div>
                           <p>--------</p>
                           <div class="simpleCart_shelfItem products-right-grid1-add-cart">
                             <p>
@@ -223,7 +235,7 @@
                                ?>
                                <a class="item_add"
                                {{-- href="{{ route('Mocafastfood.productdetail', ['id'=> $product->id]) }}" --}}
-                               href="/" 
+                               href="{{ route('Mocafastfood.LogIn') }}" 
                                >
                              add to cart </a>
                              <?php 
@@ -231,76 +243,32 @@
                            ?>
 
 
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                     @endforeach
-                     <?php
-                   }else{
-                     ?>
-                     @for ($i = 0; $i <4 ; $i++)
-                     <div class="col-md-3 products-right-grids-bottom-grid">
-                      <div class="new-collections-grid1 products-right-grid1 animated wow " data-wow-delay=".5s">
-                        <div class="new-collections-grid1-image">
-                          <a href="single.html" class="product-image"><img src="{{$relatedProducts[$i]->feature_image_path}}" alt=" " class="img-responsive" style="height: 260px"></a>
-                          <div class="new-collections-grid1-image-pos products-right-grids-pos">
-                            <a href="{{ route('Mocafastfood.productdetail', ['id'=> $$relatedProducts[$i]->id]) }}">Quick View</a>
-                          </div>
-
-                        </div>
-                        <h4><a href="{{ route('Mocafastfood.productdetail', ['id'=> $$relatedProducts[$i]->id]) }}">{{$$relatedProducts[$i]->name}}</a></h4>
-                        <p>--------</p>
-                        <div class="simpleCart_shelfItem products-right-grid1-add-cart">
-                          <p>
-                            <span class="item_price">{{ number_format($$relatedProducts[$i]->price) }} đ</span>
-
-                            <?php
-                            $user = Auth::user();
-                            if($user != NULL){
-                             ?>
-                             <a class="item_add add_to_cart"
-                             href="#"
-                             data-url = "{{ route('Mocafastfood.addToCart', ['id'=> $$relatedProducts[$i]->id] ) }}"
-                             >add to cart </a>
-                             <?php
-                           }else{
-                             ?>
-                             <a class="item_add"
-                             {{-- href="{{ route('Mocafastfood.productdetail', ['id'=> $product->id]) }}" --}}
-                             href="/" 
-                             >
-                           add to cart </a>
-                           <?php 
-                         }
-                         ?>
-
-
-                       </p>
+                         </p>
+                       </div>
                      </div>
-                     @endfor
-                     <?php 
-                   }
-                   ?>
+                   </div>
+                   @endforeach
+                   @endif
 
                  </div>
                </div>
-               
-               <div class="clearfix"> </div>
              </div>
+
+             <div class="clearfix"> </div>
            </div>
          </div>
-         <!-- //single-related-products -->
+       </div>
+       <!-- //single-related-products -->
 
 
-         @endsection
+       @endsection
 
-         @section('js') 
-         <script src="{{ asset('homepage/Assets/js/jquery.min.js')}}"></script>
-         <script type="text/javascript" src="{{ asset('homepage/Assets/js/bootstrap-3.1.1.min.js')}}"></script>
-         <script src="{{ asset('homepage/Assets/js/imagezoom.js')}}"></script>
-         <script src="{{ asset('vendors/sweetalert2/sweetalert2.all.min.js') }}"></script>
-         <script type="text/javascript" src="{{ asset('vendors/cart/add_to_cart.js')}}"></script>
-         @endsection
+       @section('js') 
+       <script src="{{ asset('homepage/Assets/js/jquery.min.js')}}"></script>
+       <script type="text/javascript" src="{{ asset('homepage/Assets/js/bootstrap-3.1.1.min.js')}}"></script>
+       <script src="{{ asset('homepage/Assets/js/imagezoom.js')}}"></script>
+       <script src="{{ asset('vendors/sweetalert2/sweetalert2.all.min.js') }}"></script>
+       <script type="text/javascript" src="{{ asset('vendors/cart/add_to_cart.js')}}"></script>
+       @endsection
 
 

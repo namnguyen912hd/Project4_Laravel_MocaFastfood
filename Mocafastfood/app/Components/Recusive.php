@@ -1,6 +1,6 @@
 <?php 
 
-// Recusive Category
+// Recursive Category
 	
 namespace App\Components;
 

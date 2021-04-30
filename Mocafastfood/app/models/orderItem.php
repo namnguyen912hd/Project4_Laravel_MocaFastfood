@@ -9,6 +9,7 @@ class orderItem extends Model
     protected $guarded = [];
     public function products()
     {
-    	return $this->hasMany(Product::class,'id');
+    	return $this->hasOne(Product::class,'id');
     }
+
 }

@@ -12,6 +12,11 @@ class user extends Model
 
     }
 
+    public function orders()
+    {
+    	return $this->hasMany(Order::class,'user_id');
+    }
+
   
 }
 

@@ -7,9 +7,11 @@ use App\models\role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use App\Traits\DeleteModelTrait;
 
 class RoleController extends Controller
 {
+    use DeleteModelTrait;
     private $permission;
     private $role;
     public function __construct(Permission $permission, Role $role)
@@ -43,7 +45,7 @@ class RoleController extends Controller
           DB::rollBack();
           Log::error('Message: ' . $e->getMessage() . '--------Line: ' . $e->getLine());
       } 	
-  }
+    }
 
     public function editRole($id)
     {
@@ -73,11 +75,10 @@ class RoleController extends Controller
       } 	
     }
 
-	// public function deleteUser($id)
-	//     {
-	//         $this->user->find($id)->delete();
-	//          return redirect() -> route('users.index');
-	//     }
-    //  
+	  public function deleteRole($id)
+	  {
+	    return $this->DeleteModelTrait($id,$this->role);
+	  }
+     
    
 }

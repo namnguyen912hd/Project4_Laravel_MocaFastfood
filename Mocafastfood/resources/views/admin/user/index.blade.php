@@ -40,7 +40,7 @@
                     <td>{{ $user->email }}</td>
                     <td>
                       <a href="{{ route('users.edit', ['id'=> $user->id]) }}" class="btn btn-default">Edit</a>
-                      <a href="{{ route('users.delete', ['id'=> $user->id]) }}" class="btn btn-danger">Delete</a>
+                      <a href=""  class="btn btn-danger action_delete" data-url = "{{ route('users.delete', ['id'=> $user->id]) }}">Delete</a>
                     </td>
                   </tr>
                 @endforeach
@@ -62,4 +62,8 @@
   <!-- /.content-wrapper -->
 @endsection
 
-
+@section('js')
+  <script src="{{ asset('vendors/sweetalert2/sweetalert2.all.min.js') }}"></script>
+  <script src="{{ asset('vendors/adminDelete.js') }}"></script>
+  <script src="{{ asset('vendors/jquery/jquery.min.js') }}"></script>
+@endsection

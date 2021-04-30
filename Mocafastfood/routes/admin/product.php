@@ -5,12 +5,13 @@
 		Route::get('/', [
 			'as' => 'products.index',
 			'uses' => 'ProductController@index',
-			// 'middleware'=>'can:product-list'
+			'middleware'=>'can:product-list'
 		]);
 
 		Route::get('/createProduct', [
 			'as' => 'products.create',
-			'uses' => 'ProductController@createProduct'
+			'uses' => 'ProductController@createProduct',
+			'middleware'=>'can:product-add'
 		]);
 
 		Route::post('/storeProduct', [
@@ -20,7 +21,8 @@
 
 		Route::get('/editProduct/{id}', [
 			'as' => 'products.edit',
-			'uses' => 'ProductController@editProduct'
+			'uses' => 'ProductController@editProduct',
+			'middleware'=>'can:product-edit'
 		]);
 
 		Route::post('/updateProduct/{id}', [
@@ -30,7 +32,8 @@
 
 		Route::get('/deleteProduct/{id}', [
 			'as' => 'products.delete',
-			'uses' => 'ProductController@deleteProduct'
+			'uses' => 'ProductController@deleteProduct',
+			'middleware'=>'can:product-delete'
 		]);
 
 	});

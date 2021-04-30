@@ -7,10 +7,11 @@ use Illuminate\Http\Request;
 use App\Components\Recusive;
 use Illuminate\Support\Str;
 use Illuminate\Pagination\Paginator;
+use App\Traits\DeleteModelTrait;
 
 class CategoryController extends Controller
 {
-
+    use DeleteModelTrait;
     private $category;
 
 
@@ -112,8 +113,7 @@ class CategoryController extends Controller
      */
     public function delete($id)
     {
-        $this->category->find($id)->delete();
-        return redirect() -> route('categories.index');
+        return $this->DeleteModelTrait($id,$this->category);
     }
 
 }

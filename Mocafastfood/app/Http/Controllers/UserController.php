@@ -7,9 +7,11 @@ use App\models\role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use App\Traits\DeleteModelTrait;
 
 class UserController extends Controller
 {
+    use DeleteModelTrait;
 	private $user;
 	private $role;
     public function __construct(User $user, Role $role)
@@ -79,8 +81,7 @@ class UserController extends Controller
 
 	public function deleteUser($id)
 	    {
-	        $this->user->find($id)->delete();
-	         return redirect() -> route('users.index');
+	        return $this->DeleteModelTrait($id,$this->user);
 	    }
 
 }

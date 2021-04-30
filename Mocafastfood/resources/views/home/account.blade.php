@@ -1,7 +1,7 @@
 @extends('layouts.home')
 
 @section('title')
-<title>Sign up</title>
+<title>Account</title>
 @endsection
 
 @section('css')

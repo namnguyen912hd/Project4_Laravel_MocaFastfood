@@ -7,9 +7,10 @@ use Illuminate\Http\Request;
 use App\Components\RecusiveMenu;
 use Illuminate\Support\Str;
 use Illuminate\Pagination\Paginator;
-
+use App\Traits\DeleteModelTrait;
 class MenuController extends Controller
 {
+    use DeleteModelTrait;
     private $menu;
 
 
@@ -83,7 +84,6 @@ class MenuController extends Controller
      */
     public function deleteMenu($id)
     {
-        $this->menu->find($id)->delete();
-         return redirect() -> route('menus.index');
+        return $this->DeleteModelTrait($id,$this->menu);
     }
 }

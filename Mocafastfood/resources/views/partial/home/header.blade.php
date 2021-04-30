@@ -14,16 +14,16 @@
                         <ul>
 
                             <li class="active"><a data-hover="Home" href="{{ route('Mocafastfood.index') }}">Home</a></li>
-                            <li><a data-hover="About" href="/Moca/Index" class="scroll">About</a></li>
-                            <li><a data-hover="Gallery" href="{{ route('Mocafastfood.shopping') }}" >Gallery</a></li>
-                            <li><a data-hover="Contact" href="/Moca/Index" class="scroll">Contact</a></li>
+                            <li><a data-hover="About" href="{{ route('Mocafastfood.about') }}" >About</a></li>
+                            <li><a data-hover="Shopping" href="{{ route('Mocafastfood.shopping') }}" >Shopping</a></li>
+                            
                             
                             <?php
                             $user = Auth::user();
                             if($user != NULL){ 
                                ?>
                                <li><a data-hover="Cart" href="{{ route('Mocafastfood.showCart') }}">Cart</a></li>
-                               <li><a data-hover="Order" href="#">Order</a></li>
+                               <li><a data-hover="Order" href="{{ route('Mocafastfood.orderStatus') }}">Order</a></li>
                                <li><a data-hover="Account" href="{{ route('Mocafastfood.Account') }}" >Account</a></li>
                                <?php
                            }else{

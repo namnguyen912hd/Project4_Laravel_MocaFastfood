@@ -37,7 +37,7 @@
                     <td>{{ $order->status }}</td>
                     <td>
                       <a href="{{ route('orders.getOrderDetail', ['id'=> $order->id]) }}" class="btn btn-default">Detail</a>
-                      <a href="{{ route('orders.delete', ['id'=> $order->id]) }}" class="btn btn-danger">Delete</a>
+                      <a href="" data-url="{{ route('orders.delete', ['id'=> $order->id]) }}" class="btn btn-danger action_delete">Delete</a>
                     </td>
                   </tr>
                 @endforeach
@@ -59,4 +59,8 @@
   <!-- /.content-wrapper -->
 @endsection
 
-
+@section('js')
+  <script src="{{ asset('vendors/sweetalert2/sweetalert2.all.min.js') }}"></script>
+  <script src="{{ asset('vendors/adminDelete.js') }}"></script>
+  <script src="{{ asset('vendors/jquery/jquery.min.js') }}"></script>
+@endsection

@@ -362,23 +362,25 @@
           <div class="arrows-serve"><img src="{{asset('homepage/Assets//images/border.png')}}" alt="border"></div>
           <div class="gallery-grids">      
 
+            @if (isset($categories))
             @foreach ($categories as $category)
-              <div class="col-md-4 baner-top wow fadeInRight animated" data-wow-delay=".5s">
-                <a href="{{ route('Mocafastfood.products', ['id'=> $category->id]) }}" >
-                  <div class="gal-spin-effect vertical ">
-                    <img src="{{asset('homepage/Assets//images/c4.jpg')}}" alt=" " />
-                    <div class="gal-text-box">
-                      <div class="info-gal-con">
-                        <h4>{{ $category->name }}</h4>
-                        <span class="separator"></span>
-                        <p>click for details</p>
-                        <span class="separator"></span>
-                      </div>
+            <div class="col-md-4 baner-top wow fadeInRight animated" data-wow-delay=".5s">
+              <a href="{{ route('Mocafastfood.products', ['id'=> $category->id]) }}" >
+                <div class="gal-spin-effect vertical ">
+                  <img src="{{asset('homepage/Assets//images/c4.jpg')}}" alt=" " />
+                  <div class="gal-text-box">
+                    <div class="info-gal-con">
+                      <h4>{{ $category->name }}</h4>
+                      <span class="separator"></span>
+                      <p>click for details</p>
+                      <span class="separator"></span>
                     </div>
                   </div>
-                </a>
-              </div>
+                </div>
+              </a>
+            </div>
             @endforeach
+            @endif
             
             <div class="clearfix"> </div>
           </div>

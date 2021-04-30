@@ -28,6 +28,37 @@ Route::prefix('adminMoca')->group(function () {
 		return view('adminPage');
 	});
 
+	Route::prefix('setting')->group(function () {
+		Route::get('/', [
+			'as' => 'settings.index',
+			'uses' => 'SettingController@index'
+		]);
+
+		Route::get('/create', [
+			'as' => 'settings.create',
+			'uses' => 'SettingController@create'
+		]);
+
+		Route::post('/store', [
+			'as' => 'settings.store',
+			'uses' => 'SettingController@store'
+		]);
+
+		Route::get('/edit/{id}', [
+			'as' => 'settings.edit',
+			'uses' => 'SettingController@edit'
+		]);
+
+		Route::post('/update/{id}', [
+			'as' => 'settings.update',
+			'uses' => 'SettingController@update'
+		]);
+
+		Route::get('/delete/{id}', [
+			'as' => 'settings.delete',
+			'uses' => 'SettingController@delete'
+		]);
+	});
 
 	// source Admin_Route: routes/admin/
 	
@@ -87,6 +118,11 @@ Route::prefix('MocaFastfood')->group(function () {
 	Route::get('/', [
 		'as' => 'Mocafastfood.index',
 		'uses' => 'HomeController@index'
+	]);
+
+	Route::get('/about', [
+		'as' => 'Mocafastfood.about',
+		'uses' => 'HomeController@about'
 	]);
 
 	Route::get('/getProducts/{id}', [
@@ -172,6 +208,24 @@ Route::prefix('MocaFastfood')->group(function () {
 	Route::post('/addOrder', [
 		'as' => 'Mocafastfood.addOrder',
 		'uses' => 'HomeController@addOrder',
+
+	]);
+
+	Route::get('/orderStatus', [
+		'as' => 'Mocafastfood.orderStatus',
+		'uses' => 'HomeController@getorderStatus',
+
+	]);
+
+	Route::get('/orderHistory', [
+		'as' => 'Mocafastfood.orderHistory',
+		'uses' => 'HomeController@getorderHistory',
+
+	]);
+
+	Route::get('/orderDetailHome/{id}', [
+		'as' => 'Mocafastfood.orderDetailHome',
+		'uses' => 'HomeController@getOrderDetail',
 
 	]);
 

@@ -34,7 +34,7 @@
           </div>
           
           <div class="form-group">
-            <input style="float: left;width: 10%;" type="checkbox" name="remember_me" />&nbsp;<span>Rememeber me</span>
+            <input style="float: left;width: 10%;" type="checkbox" name="" />&nbsp;<span>Rememeber me</span>
           </div>
 
           <div class="form-group form-button">

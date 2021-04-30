@@ -23,7 +23,7 @@ class HomeController extends Controller
 	private $tag;
 	private $user;
 	private $order;
-	private $orderItem;
+	private $orderItem; 
 
 	public function __construct(Category $category, Product $product, Tag $tag, User $user,Order $order, OrderItem $orderItem){
 
@@ -41,6 +41,11 @@ class HomeController extends Controller
 		return view('home.index', compact('categories'));
 	}
 
+	public function about(){
+		$categories = $this->category->all();
+
+		return view('home.about');
+	}
 
 	/**
 	 * getting products by categoryID
@@ -50,7 +55,8 @@ class HomeController extends Controller
 	public function getProductsbyCate($id)
 	{
 		$categories = $this->category->all();
-		$products = $this->product->where('category_id', $id)->get();
+		$products = $this->product->where('category_id', $id)->paginate(6);
+		//dd($products);
 		$cateName = $this->category->find($id)->name;
 		return view('home.products', compact('categories','products','cateName'));
 	}
@@ -74,7 +80,8 @@ class HomeController extends Controller
 		$tagIDs = $product->tags->pluck('id');
 		$relatedProducts = Product::whereHas('tags', function($q) use($tagIDs) {
 			$q->whereIn('tag_id', $tagIDs);
-		})->get();
+		})->take(4)->get();
+		//dd($relatedProducts);
 		return view('home.productDetail', compact('product','relatedProducts'));
 	}
 
@@ -183,11 +190,11 @@ class HomeController extends Controller
 
 	public function postLogIn(Request $request)
 	{
-		$remember = $request->has('remember_me')?true:false;
+		//$remember = $request->has('remember_me')?true:false;
 		if (Auth::attempt([
 			'name'=>$request->your_name,
 			'password' => $request->your_pass
-		],$remember)) 
+		] ))  //,$remember
 		{
 			// $roles =Auth::user()->roles;
 			foreach (Auth::user()->roles  as $role) {
@@ -239,7 +246,7 @@ class HomeController extends Controller
 	{
 		session()->flush();
 		$categories = $this->category->all();
-		return view('home.log_in');
+		return redirect() -> route('Mocafastfood.LogIn');
 	}
 
 	// account
@@ -302,7 +309,36 @@ class HomeController extends Controller
 		
 	}
 
+	public function getorderStatus()
+	{
+		$user = Auth::user();
+		$orders = $this->order->whereIn('status', ['Chờ xác nhận','Đang giao'])->where('user_id',$user->id)->get();
+		$confirmingOrders = $this->order->where('status', 'Chờ xác nhận')->where('user_id',$user->id)->get();
+		$deleveringOrders = $this->order->where('status', 'Đang giao')->where('user_id',$user->id)->get();
+		return view('home.orderStatus',compact('orders','confirmingOrders','deleveringOrders'));
+	}
 
+	public function getorderHistory()
+	{
+		$user = Auth::user();
+		//$oders = $this->user->find($user->id);
+		$orders = $this->order->where('status', 'Đã giao')->where('user_id',$user->id)->get();
+		
+		return view('home.orderHistory',compact('orders'));
+	}
+
+	public function getOrderDetail($id){
+		
+		$order = $this->order->find($id);
+		$orderitems = $order->orderitems;
+		// dd($orderitems[0]->products->get());
+		$total = 0;
+		foreach ($orderitems as $orderitem) {
+			$total += $orderitem->unitprice * $orderitem->quantity;
+		}
+		$total = $total + 17000;
+		return view('home.orderDetail', compact('order','orderitems','total'));
+	}
 
 
 }

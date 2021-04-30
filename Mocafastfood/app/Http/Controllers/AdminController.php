@@ -8,6 +8,10 @@ use App\models\role;
 
 class AdminController extends Controller
 {
+	/**
+	 * Form login 
+	 * @return login view
+	 */
 	public function login()
 	{
     	// dd(bcrypt('namng'));
@@ -15,19 +19,20 @@ class AdminController extends Controller
 	}
 
 
+	
 	public function postLogin(Request $request)
 	{
 		$remember = $request->has('remember_me')?true:false;
 		
 
-		// $roles = ;
+		// get info user
 		if (Auth::attempt([
 			'name'=>$request->name,
 			'password' => $request->password
 		],$remember)) 
 		{
 
-			// $roles =Auth::user()->roles;
+			// check role of user
 			foreach (Auth::user()->roles  as $role) {
 				if ($role->name == "customer") {
 					return redirect()->to('MocaFastfood');

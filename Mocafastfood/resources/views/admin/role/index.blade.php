@@ -37,7 +37,7 @@
                     <td>{{ $role->display_name }}</td>
                     <td>
                       <a href="{{ route('roles.edit', ['id'=> $role->id]) }}" class="btn btn-default">Edit</a>
-                      <a href="{{ route('roles.delete', ['id'=> $role->id]) }}" class="btn btn-danger">Delete</a>
+                      <a href="" data-url="{{ route('roles.delete', ['id'=> $role->id]) }}" class="btn btn-danger action_delete">Delete</a>
                     </td>
                   </tr>
                 @endforeach
@@ -59,4 +59,8 @@
   <!-- /.content-wrapper -->
 @endsection
 
-
+@section('js')
+  <script src="{{ asset('vendors/sweetalert2/sweetalert2.all.min.js') }}"></script>
+  <script src="{{ asset('vendors/adminDelete.js') }}"></script>
+  <script src="{{ asset('vendors/jquery/jquery.min.js') }}"></script>
+@endsection

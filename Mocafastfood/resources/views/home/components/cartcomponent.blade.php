@@ -1,5 +1,5 @@
 <?php
-
+ 
 if( $carts !=null){ 
  ?>
  <!--checkout-->
@@ -8,7 +8,7 @@ if( $carts !=null){
     <div class="check_w3ls">
       <div class="d-sm-flex justify-content-between mb-4"  style="padding-bottom: 2em">
         <h4 class="mt-sm-0 mt-3">Giỏ hàng bạn có:
-          <span>3 Products</span>
+          <span> Products</span>
         </h4>
       </div>
       <div class="checkout-right " >
@@ -58,6 +58,8 @@ if( $carts !=null){
       </table>
     </div>
     <div class="row checkout-left mt-5" style="padding-top: 5em; padding-bottom: 4em">
+
+      
       <div class="col-md-4 checkout-left-basket">
         <h4>Tiếp tục danh sách</h4>
         <ul>
@@ -68,6 +70,8 @@ if( $carts !=null){
           <li  style="color: #D8703F; font-size: 20px">Total: <i></i> <span>{{number_format($total)}}&nbsp;đ</span></li>
         </ul>
       </div>
+
+
       <div class="col-md-8 address_form">
         <h4>Thông tin vận chuyện:</h4>
         <form action="{{ route('Mocafastfood.addOrder') }}" method="post" class="creditly-card-form shopf-sear-headinfo_form">
@@ -96,9 +100,16 @@ if( $carts !=null){
                   <div class="clear"> </div>
                 </div>
                 <div class="controls">
-                  <label class="control-label">Thời gian giao hàng dự kiến: </label>
-                  <input class="form-control" type="text" placeholder="Thời gian nhận hàng dự kiến">
-                </div>
+                  <label class="control-label">Thời gian giao hàng dự kiến: </label>&nbsp;&nbsp;
+                  <?php
+                    date_default_timezone_set('Asia/Ho_Chi_Minh');
+                    $day=strtotime("+30 Minutes");
+                    echo date("H", $day) . "  giờ  "  . date("i", $day) . "  phút  ";
+                    echo " - ngày   " . date("d / m / Y", $day);
+                    
+                    
+                  ?>
+                </div><br>
                 <div class="controls">
                   <label class="control-label">Ghi chú: </label><br>
                   <textarea id="w3review" name="note" rows="4" cols="50">
