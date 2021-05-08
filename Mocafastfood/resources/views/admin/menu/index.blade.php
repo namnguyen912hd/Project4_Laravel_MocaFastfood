@@ -29,10 +29,12 @@
                 </tr>
               </thead>
               <tbody>
-
+                @php
+                  $stt = 1
+                @endphp
                 @foreach ($menus as $menu)
                   <tr>
-                    <th scope="row">{{ $menu->id }}</th>
+                    <th scope="row">{{$stt++}}</th>
                     <td>{{ $menu->name }}</td>
                     <td>
                       <a href="{{ route('menus.edit', ['id'=> $menu->id]) }}" class="btn btn-default">Edit</a>

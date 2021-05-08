@@ -1,13 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
-use App\models\menu;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\models\menu;
 use App\Components\RecusiveMenu;
 use Illuminate\Support\Str;
 use Illuminate\Pagination\Paginator;
 use App\Traits\DeleteModelTrait;
+
 class MenuController extends Controller
 {
     use DeleteModelTrait;
@@ -87,3 +89,4 @@ class MenuController extends Controller
         return $this->DeleteModelTrait($id,$this->menu);
     }
 }
+

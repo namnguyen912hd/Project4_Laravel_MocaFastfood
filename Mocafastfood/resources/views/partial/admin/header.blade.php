@@ -113,8 +113,10 @@
         </div>
       </li> --}}
       <li class="nav-item">
-        <a class="nav-link"  href="{{ route('Mocafastfood.LogOut') }}" role="button"><i
-            class="fas fa-th-large"></i></a>
+        <a class="nav-link"  href="{{ route('Mocafastfood.index') }}" role="button"><i class="fa fa-home" aria-hidden="true"></i></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"  href="{{ route('Mocafastfood.LogOut') }}" role="button"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
       </li>
     </ul>
   </nav>

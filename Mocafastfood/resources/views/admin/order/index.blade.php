@@ -28,10 +28,12 @@
                 </tr>
               </thead>
               <tbody>
-
+                @php
+                  $stt = 1
+                @endphp
                 @foreach ($orders as $order)
                   <tr>
-                    <th scope="row">{{ $order->id }}</th>
+                    <th scope="row">{{$stt++}}</th>
                     <td>{{ $order->receiver }}</td>
                     <td>{{ $order->telnumber }}</td>
                     <td>{{ $order->status }}</td>

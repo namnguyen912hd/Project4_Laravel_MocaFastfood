@@ -24,17 +24,19 @@
             <table class="table table-hover">
               <thead>
                 <tr>
-                  <th scope="col">ID</th>
+                  <th scope="col">STT</th>
                   <th scope="col">Tên loại</th>
                   <th scope="col">Action</th>
                  
                 </tr>
               </thead>
               <tbody>
-
+                @php
+                  $stt = 1
+                @endphp
                 @foreach ($categories as $category)
                   <tr>
-                    <th scope="row">{{ $category->id }}</th>
+                    <th scope="row">{{$stt++}}</th>
                     <td>{{ $category->name }}</td>
                     <td>
                       @can('category-edit')

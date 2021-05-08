@@ -33,19 +33,19 @@
             </a>
           </li>
 
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a href="{{ route('menus.index') }}" class="nav-link">
-              <i class="fa fa-product-hunt" aria-hidden="true"></i>
+              <i class="nav-icon fas fa-th"></i>
               <p>
                 Menu
                 <!-- <span class="right badge badge-danger">New</span> -->
               </p>
             </a>
-          </li>
+          </li> --}}
 
           <li class="nav-item">
             <a href="{{ route('products.index') }}" class="nav-link">
-              <i class="fa fa-product-hunt" aria-hidden="true"></i>
+              <i class="nav-icon fas fa-th"></i>
               <p>
                 Product
               </p>
@@ -54,14 +54,14 @@
 
           <li class="nav-item">
             <a href="{{ route('users.index') }}" class="nav-link">
-              <i class="fa fa-product-hunt" aria-hidden="true"></i>
+              <i class="nav-icon fas fa-th"></i>
               <p>
                 User
               </p>
             </a>
           </li>
 
-         {{--  <li class="nav-item">
+          {{-- <li class="nav-item">
             <a href="{{ route('settings.index') }}" class="nav-link">
               <i class="fa fa-product-hunt" aria-hidden="true"></i>
               <p>
@@ -72,25 +72,25 @@
 
           <li class="nav-item">
             <a href="{{ route('roles.index') }}" class="nav-link">
-              <i class="fa fa-product-hunt" aria-hidden="true"></i>
+              <i class="nav-icon fas fa-th"></i>
               <p>
                 Role
               </p>
             </a>
           </li>
 
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a href="{{ route('permissions.create') }}" class="nav-link">
-              <i class="fa fa-product-hunt" aria-hidden="true"></i>
+              <i class="nav-icon fas fa-th"></i>
               <p>
                 Permission
               </p>
             </a>
-          </li>
+          </li> --}}
 
           <li class="nav-item">
             <a href="{{ route('orders.index') }}" class="nav-link">
-              <i class="fa fa-product-hunt" aria-hidden="true"></i>
+              <i class="nav-icon fas fa-th"></i>
               <p>
                 Order
               </p>
@@ -99,7 +99,7 @@
 
           <li class="nav-item">
             <a href="{{ route('orders.getOrderShipping') }}" class="nav-link">
-              <i class="fa fa-product-hunt" aria-hidden="true"></i>
+              <i class="nav-icon fas fa-th"></i>
               <p>
                 shipping
               </p>

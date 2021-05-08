@@ -3,18 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\models\category;
-use App\models\product;
-use App\models\tag;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
-use App\models\role;
+
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use App\models\user;
-use App\models\order;
-use App\models\orderItem;
+
 
 class HomeController extends Controller
 {
@@ -22,18 +20,15 @@ class HomeController extends Controller
 	private $product;
 	private $tag;
 	private $user;
-	private $order;
-	private $orderItem; 
 
-	public function __construct(Category $category, Product $product, Tag $tag, User $user,Order $order, OrderItem $orderItem){
+
+	public function __construct(Category $category, User $user){
 
 		$this->category = $category;
-		$this->product = $product;
-		$this->tag = $tag;
+
 		$this->user = $user;
-		$this->order = $order;
-		$this->orderItem = $orderItem;
-	}
+
+	} 
 
 	public function index(){
 		$categories = $this->category->all();
@@ -47,139 +42,7 @@ class HomeController extends Controller
 		return view('home.about');
 	}
 
-	/**
-	 * getting products by categoryID
-	 * @param  [int] $id [categoryId]
-	 * @return list products
-	 */
-	public function getProductsbyCate($id)
-	{
-		$categories = $this->category->all();
-		$products = $this->product->where('category_id', $id)->paginate(6);
-		//dd($products);
-		$cateName = $this->category->find($id)->name;
-		return view('home.products', compact('categories','products','cateName'));
-	}
-
-	public function shopping()
-	{
-		$categories = $this->category->all();
-		
-		return view('home.shopping', compact('categories'));
-	}
-
-
-	/**
-	 * getting a product data by id
-	 * @param  [int] $id [productId]
-	 * @return a product data and related products
-	 */
-	public function getProductDetail($id)
-	{
-		$product = $this->product->find($id);
-		$tagIDs = $product->tags->pluck('id');
-		$relatedProducts = Product::whereHas('tags', function($q) use($tagIDs) {
-			$q->whereIn('tag_id', $tagIDs);
-		})->take(4)->get();
-		//dd($relatedProducts);
-		return view('home.productDetail', compact('product','relatedProducts'));
-	}
-
-	// get products by tag
 	
-	public function getProductsbyTag($id)
-	{
-		$tagName = $this->tag->find($id)->name;
-		$categories = $this->category->all();
-		$products = Tag::findOrFail($id)->products;
-		return view('home.ProductsbyTag', compact('categories','products','tagName'));
-	}
-
-	// shopping cart
-	
-	public function addToCart($id)
-	{
-		// session()->flush();
-		$product = $this->product->find($id);
-		$cart = session()->get('cart');
-		if (isset( $cart[$id] )) {
-			$cart[$id]['quantity'] = $cart[$id]['quantity'] + 1;
-		}
-		else {
-			$cart[$id] = [
-				'productID' => $id,
-				'name' => $product->name,
-				'price' => $product->price,
-				'quantity' => 1,
-				'image_path' => $product->feature_image_path
-
-			];
-		}
-		session()->put('cart',$cart);
-
-		return response()->json([
-			'code' => 200,
-			'message' => 'success'
-		], 200);
-		// echo '<pre>';
-		// print_r(session()->get('cart'));
-	}
-
-	public function getTotalinCart(array $carts)
-	{
-		$total = 0;
-		
-		if ( $carts != null) {
-			foreach ($carts as $cart) {
-				$total += $cart['price'] * $cart['quantity'];
-			}
-			$total = $total+17000;
-		}
-		else {
-			$total = 0;
-		}
-		return $total;
-	}
-
-	public function showCart()
-	{
-		$carts = session()->get('cart');
-		$total = 0;
-		
-		if ( $carts != null) {
-			foreach ($carts as $cart) {
-				$total += $cart['price'] * $cart['quantity'];
-			}
-			$total = $total+17000;
-		}
-		else {
-			$total = 0;
-		}
-		
-		return view('home.cart', compact('carts','total'));
-	}
-
-	public function updateCart(Request $request)
-	{
-		$carts = session()->get('cart');
-		$carts[$request->id]['quantity'] = $request->quantity;
-		session()->put('cart',$carts);
-		$carts = session()->get('cart');
-		$total = $this->getTotalinCart($carts);
-		$cartComponent = view('home.components.cartcomponent', compact('carts','total'))->render();
-		return response()->json(['cart_conponent' =>$cartComponent, 'code' => 200 ], 200);
-	}
-	public function deleteCart(Request $request)
-	{
-		$carts = session()->get('cart');
-		unset($carts[$request->id]);
-		session()->put('cart',$carts);
-		$carts = session()->get('cart');
-		$total = $this->getTotalinCart($carts);
-		$cartComponent = view('home.components.cartcomponent', compact('carts','total'))->render();
-		return response()->json(['cart_conponent' =>$cartComponent, 'code' => 200 ], 200);
-	}
-
 	// log in
 	public function LogIn(Request $request)
 	{
@@ -249,96 +112,11 @@ class HomeController extends Controller
 		return redirect() -> route('Mocafastfood.LogIn');
 	}
 
-	// account
 	
-	public function showAccount()
-	{
+	
+	
 
-		$user = Auth::user();
-		return view('home.account',compact('user'));
-	}
-
-	public function updateAccount($id,Request $request)
-	{
-		try {
-			DB::beginTransaction();
-			$roleID = 7;
-			$this->user->find($id)->update([
-				'name'=> $request->name,
-				'password' =>Hash::make($request->password),
-				'telnumber' =>$request->telnumber,
-				'email'=> $request->email
-			]);
-			$user = $this->user->find($id);
-			$user->roles()->sync($roleID);
-			DB::commit();
-			return redirect() -> route('Mocafastfood.Account');
-
-		} catch (Exception $e) {
-			DB::rollBack();
-			Log::error('Message: ' . $e->getMessage() . '--------Line: ' . $e->getLine());
-		} 	
-	}
-
-	// order
-	public function addOrder(Request $request)
-	{
-		$user = Auth::user();
-		$order = $this->order->create([
-			'user_id'=> $user->id,
-			'status' => "Chờ xác nhận",
-			'shippingFee' =>17000,
-			'receivingAddress'=> $request->receivingAddress,
-			'telnumber' => $request->telnumber,
-			'receiver' => $request->receiver,
-			'note' => $request->note
-		]); 
-		$carts = session()->get('cart');
-		foreach ($carts as $cart) {
-			$this->orderItem->create([
-				'product_id'=> $cart['productID'],
-				'order_id' => $order->id,
-				'quantity' => $cart['quantity'],
-				'unitprice'=> $cart['price'],
-			]); 
-		}
-
-		session()->forget('cart');
-
-		return redirect() -> route('Mocafastfood.showCart');
-		
-	}
-
-	public function getorderStatus()
-	{
-		$user = Auth::user();
-		$orders = $this->order->whereIn('status', ['Chờ xác nhận','Đang giao'])->where('user_id',$user->id)->get();
-		$confirmingOrders = $this->order->where('status', 'Chờ xác nhận')->where('user_id',$user->id)->get();
-		$deleveringOrders = $this->order->where('status', 'Đang giao')->where('user_id',$user->id)->get();
-		return view('home.orderStatus',compact('orders','confirmingOrders','deleveringOrders'));
-	}
-
-	public function getorderHistory()
-	{
-		$user = Auth::user();
-		//$oders = $this->user->find($user->id);
-		$orders = $this->order->where('status', 'Đã giao')->where('user_id',$user->id)->get();
-		
-		return view('home.orderHistory',compact('orders'));
-	}
-
-	public function getOrderDetail($id){
-		
-		$order = $this->order->find($id);
-		$orderitems = $order->orderitems;
-		// dd($orderitems[0]->products->get());
-		$total = 0;
-		foreach ($orderitems as $orderitem) {
-			$total += $orderitem->unitprice * $orderitem->quantity;
-		}
-		$total = $total + 17000;
-		return view('home.orderDetail', compact('order','orderitems','total'));
-	}
+	
 
 
 }

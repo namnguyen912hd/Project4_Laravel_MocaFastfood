@@ -18,36 +18,46 @@
         <table class="table">
           <thead class="thead-light">
            <tr>
-            <th scope="col">ID đơn hàng</th>
-            <th scope="col">Thông tin</th>
-            <th scope="col">Danh sách sản phẩm</th>
+            <th scope="col" >STT</th>
+            <th scope="col">Sản phẩm</th>
+            <th scope="col" style="width: 125px">Đơn giá (vnd)</th>
+            <th scope="col">Tình trạng</th>
+            <th scope="col">Chi tiết</th>
           </tr>
         </thead>
         <tbody>
           @if (isset($orders))
-            @foreach ($orders as $order)
-            <tr>
-              <th scope="row">{{ $order->id }}</th>
-              <td>
-                <div>
-                  <label>Người nhận: {{ $order->receiver }}</label><br>
-                  <label>Thời gian nhận hàng: {{ $order->receiver }}</label><br>
-                </div>
-              </td>
-              <td>
-                <div>
-                  @foreach ($order->products as $product)
-                    <img style="width: 70px;height: 60px" src="{{$product->feature_image_path}}" alt="">
-                    <label>{{$product->name}}</label>
-                    <label>{{number_format($product->price)}}</label>
-                    <a href="">mua tiếp</a>
-                  @endforeach
-                </div>
-              </td>
+          @php
+            $stt = 1
+          @endphp
+          @foreach ($orders as $order)
 
-            </tr>
-            @endforeach
+          @foreach ($order->products as $product)
+          <tr>
+            <td>
+              {{$stt++}}
+            </td>
+            <td>
+              <img style="width: 100px;height: 110px" src="{{$product->feature_image_path}}" alt="">
+              <span>{{$product->name}}</span>
+            </td>
+            <td>
+              <span style="float: right;">{{number_format($product->price)}}</span>
+            </td>
+            <td>
+              <span>{{$order->status}}</span>
+            </td>
+            <td>
+              <a class="btn btn-primary" href="{{ route('Mocafastfood.orderDetailHome', ['id'=> $order->id]) }}" role="button">chi tiết</a>
+            </td>
+
+          </tr>
+
+          @endforeach
+
+          @endforeach
           @endif
+
 
         </tbody>
       </table>

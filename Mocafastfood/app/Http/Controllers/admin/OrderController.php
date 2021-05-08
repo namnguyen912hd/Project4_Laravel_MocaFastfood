@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Components\RecusiveMenu;
 use Illuminate\Support\Str;
@@ -11,6 +12,7 @@ use App\models\orderItem;
 use App\models\product;
 use App\models\user;
 use App\Traits\DeleteModelTrait;
+
 class OrderController extends Controller
 {
 	use DeleteModelTrait;

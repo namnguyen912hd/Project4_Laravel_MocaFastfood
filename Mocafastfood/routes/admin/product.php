@@ -4,35 +4,35 @@
 	Route::prefix('adminMoca/products')->group(function () {
 		Route::get('/', [
 			'as' => 'products.index',
-			'uses' => 'ProductController@index',
+			'uses' => 'admin\ProductController@index',
 			'middleware'=>'can:product-list'
 		]);
 
 		Route::get('/createProduct', [
 			'as' => 'products.create',
-			'uses' => 'ProductController@createProduct',
+			'uses' => 'admin\ProductController@createProduct',
 			'middleware'=>'can:product-add'
 		]);
 
 		Route::post('/storeProduct', [
 			'as' => 'products.store',
-			'uses' => 'ProductController@storeProduct'
+			'uses' => 'admin\ProductController@storeProduct'
 		]);
 
 		Route::get('/editProduct/{id}', [
 			'as' => 'products.edit',
-			'uses' => 'ProductController@editProduct',
+			'uses' => 'admin\ProductController@editProduct',
 			'middleware'=>'can:product-edit'
 		]);
 
 		Route::post('/updateProduct/{id}', [
 			'as' => 'products.update',
-			'uses' => 'ProductController@updateProduct'
+			'uses' => 'admin\ProductController@updateProduct'
 		]);
 
 		Route::get('/deleteProduct/{id}', [
 			'as' => 'products.delete',
-			'uses' => 'ProductController@deleteProduct',
+			'uses' => 'admin\ProductController@deleteProduct',
 			'middleware'=>'can:product-delete'
 		]);
 

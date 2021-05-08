@@ -44,13 +44,25 @@ class RouteServiceProvider extends ServiceProvider
     {
         $this->mapApiRoutes();
         $this->mapWebRoutes();
+
+
+        // route admin
         $this->mapAdminCategoryRoutes();
         $this->mapAdminMenuRoutes();
         $this->mapAdminProductRoutes();
         $this->mapAdminRoleRoutes();
         $this->mapAdminPermissionRoutes();
         $this->mapAdminUserRoutes();
-        //
+        $this->mapAdminSettingRoutes();
+        $this->mapAdminOrderRoutes();
+
+        // route home
+        $this->mapClientAccountRoutes();
+        $this->mapClientOrderRoutes();
+        $this->mapClientCartRoutes();
+        $this->mapClientProductRoutes();
+
+
     }
 
     /**
@@ -67,7 +79,7 @@ class RouteServiceProvider extends ServiceProvider
         ->group(base_path('routes/web.php'));
     }
 
-
+    // ROUTE ADMIN
     protected function mapAdminCategoryRoutes()
     {
         Route::middleware('web')
@@ -90,9 +102,6 @@ class RouteServiceProvider extends ServiceProvider
         ->group(base_path('routes/admin/product.php'));
     }
 
-    
-
-
     protected function mapAdminRoleRoutes()
     {
         Route::middleware('web')
@@ -113,6 +122,69 @@ class RouteServiceProvider extends ServiceProvider
         ->namespace($this->namespace)
         ->group(base_path('routes/admin/user.php'));
     }
+
+    protected function mapAdminSettingRoutes()
+    {
+        Route::middleware('web')
+        ->namespace($this->namespace)
+        ->group(base_path('routes/admin/setting.php'));
+    }
+
+    protected function mapAdminOrderRoutes()
+    {
+        Route::middleware('web')
+        ->namespace($this->namespace)
+        ->group(base_path('routes/admin/order.php'));
+    }
+
+
+    // ROUTE HOMEPAGE
+    
+    protected function mapClientOrderRoutes()
+    {
+        Route::middleware('web')
+        ->namespace($this->namespace)
+        ->group(base_path('routes/client/order.php'));
+    }
+
+    protected function mapClientCartRoutes()
+    {
+        Route::middleware('web')
+        ->namespace($this->namespace)
+        ->group(base_path('routes/client/cart.php'));
+    }
+
+    protected function mapClientProductRoutes()
+    {
+        Route::middleware('web')
+        ->namespace($this->namespace)
+        ->group(base_path('routes/client/product.php'));
+    }
+
+    protected function mapClientAccountRoutes()
+    {
+        Route::middleware('web')
+        ->namespace($this->namespace)
+        ->group(base_path('routes/client/account.php'));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * Define the "api" routes for the application.

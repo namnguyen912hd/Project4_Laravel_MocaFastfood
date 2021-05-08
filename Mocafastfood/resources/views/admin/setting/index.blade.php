@@ -32,10 +32,12 @@
                 </tr>
               </thead>
               <tbody>
-
+                @php
+                  $stt = 1
+                @endphp
                 @foreach ($settings as $setting)
                   <tr>
-                    <th scope="row">{{ $setting->id }}</th>
+                    <th scope="row">{{$stt++}}</th>
                     <td>{{ $setting->config_key }}</td>
                      <td>{{ $setting->config_value }}</td>
                     <td>

@@ -8,6 +8,7 @@
   <title>Admin</title>
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href=" {{asset('admin/plugins/fontawesome-free/css/all.min.css')}}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('admin/dist/css/adminlte.min.css')}}">
   <!-- Google Font: Source Sans Pro -->

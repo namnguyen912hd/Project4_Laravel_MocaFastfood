@@ -31,10 +31,12 @@
                 </tr>
               </thead>
               <tbody>
-
+                @php
+                  $stt = 1
+                @endphp
                 @foreach ($users as $user)
                   <tr>
-                    <th scope="row">{{ $user->id }}</th>
+                    <th scope="row">{{$stt++}}</th>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->telnumber }}</td>
                     <td>{{ $user->email }}</td>

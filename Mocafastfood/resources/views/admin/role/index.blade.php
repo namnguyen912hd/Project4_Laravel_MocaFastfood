@@ -29,10 +29,12 @@
                 </tr>
               </thead>
               <tbody>
-
+                @php
+                  $stt = 1
+                @endphp
                 @foreach ($roles as $role)
                   <tr>
-                    <th scope="row">{{ $role->id }}</th>
+                    <th scope="row">{{$stt++}}</th>
                     <td>{{ $role->name }}</td>
                     <td>{{ $role->display_name }}</td>
                     <td>

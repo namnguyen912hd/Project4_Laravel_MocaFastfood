@@ -37,7 +37,9 @@
               </tr>
               <tr>
                 <td scope="row">thời gian đặt hàng:</td>
-                <td >{{ $order->created_at }}</td>
+                <td >@php
+                 echo date('d-m-Y H:i:s', strtotime( $order->created_at ));
+                @endphp</td>
               </tr>
             </tbody>
           </table>
@@ -45,22 +47,34 @@
 
         
           <h4>- Danh sách sản phẩm</h4><br>
-          <table class="table table-hover">
+          <table class="table ">
             <thead>
               <tr>
+                <th scope="col" >STT</th>
                 <th scope="col">Tên sản phẩm</th>
+                
+                <th scope="col" style="width: 125px">Đơn giá (vnd)</th>
                 <th scope="col">Số lượng</th>
-                <th scope="col">Đơn giá</th>
-
+                <th scope="col" style="width: 150px">Thành tiền (vnd)</th>
               </tr>
             </thead>
             <tbody>
-
+              @php
+                    $stt = 1
+                  @endphp
               @foreach ($orderitems as $orderitem)
               <tr>
-                <th scope="row">{{ $orderitem->id }}</th>
-                <td>{{ $orderitem->quantity }}</td>
-                <td>{{ number_format($orderitem->unitprice) }}</td>
+                <td>
+                      {{$stt++}}
+                    </td>
+                <td scope="row">
+                  <img style="width: 100px;height: 110px" src="{{$orderitem->product->feature_image_path}}" alt="">
+                  {{ $orderitem->product->name }}
+                </td>
+                
+                <td style="float: right;">{{ number_format($orderitem->unitprice) }}</td>
+                <td ><span style="padding-left: 27px;">{{ $orderitem->quantity }}</span></td>
+                <td style="float: right;">{{ number_format($orderitem->unitprice*$orderitem->quantity) }}</td>
               </tr>
               @endforeach
               

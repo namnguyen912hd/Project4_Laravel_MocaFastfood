@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
+use App\Http\Controllers\Controller;
 use App\Components\Recusive;
 use Illuminate\Http\Request;
 use App\models\category;
@@ -14,7 +15,6 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\addProductRequest;
 use DB;
-
 
 class ProductController extends Controller
 {

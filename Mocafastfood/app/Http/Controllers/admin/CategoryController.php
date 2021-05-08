@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
-use App\models\category;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\models\category;
 use App\Components\Recusive;
 use Illuminate\Support\Str;
 use Illuminate\Pagination\Paginator;

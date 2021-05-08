@@ -37,30 +37,37 @@
               <table class="table">
                 <thead class="thead-light">
                  <tr>
+                  <th scope="col" >STT</th>
                   <th scope="col" >Sản phẩm</th>
-                  <th scope="col">Đơn giá</th>
+                  <th scope="col">Đơn giá (vnd)</th>
                   <th scope="col">Tình trạng</th>
                   <th scope="col">Chi tiết</th>
                 </tr>
                 </thead>
                 <tbody>
                   @if (isset($orders))
+                  @php
+                    $stt = 1
+                  @endphp
                   @foreach ($orders as $order)
                   
                   @foreach ($order->products as $product)
                   <tr>
                     <td>
+                      {{$stt++}}
+                    </td>
+                    <td>
                       <img style="width: 100px;height: 110px" src="{{$product->feature_image_path}}" alt="">
                       <span>{{$product->name}}</span>
                     </td>
                     <td>
-                      <span>{{number_format($product->price)}} đ</span>
+                      <span style="float: right;">{{number_format($product->price)}}</span>
                     </td>
                     <td>
-                      <span>{{$order->status}}</span>
+                      <span >{{$order->status}}</span>
                     </td>
                     <td>
-                      <a class="btn btn-primary" href="{{ route('Mocafastfood.orderDetailHome', ['id'=> $order->id]) }}" role="button">Link</a>
+                      <a class="btn btn-primary" href="{{ route('Mocafastfood.orderDetailHome', ['id'=> $order->id]) }}" role="button">Chi tiết</a>
                     </td>
 
                   </tr>
@@ -79,26 +86,33 @@
             <table class="table">
                 <thead class="thead-light">
                  <tr>
+                  <th scope="col" >STT</th>
                   <th scope="col" >Sản phẩm</th>
-                  <th scope="col">Đơn giá</th>
+                  <th scope="col" style="width: 120px">Đơn giá (vnd)</th>
                   <th scope="col">Chi tiết</th>
                 </tr>
                 </thead>
                 <tbody>
                   @if (isset($confirmingOrders))
+                  @php
+                    $t1 = 1
+                  @endphp
                   @foreach ($confirmingOrders as $order)
                   
                   @foreach ($order->products as $product)
                   <tr>
                     <td>
+                      {{$t1++}}
+                    </td>
+                    <td>
                       <img style="width: 100px;height: 110px" src="{{$product->feature_image_path}}" alt="">
                       <span>{{$product->name}}</span>
                     </td>
-                    <td>
-                      <span>{{number_format($product->price)}} đ</span>
+                    <td >
+                      <span style="float: right;">{{number_format($product->price)}}</span>
                     </td>
                     <td>
-
+                      <a class="btn btn-primary" href="{{ route('Mocafastfood.orderDetailHome', ['id'=> $order->id]) }}" role="button">Chi tiết</a>
                     </td>
 
                   </tr>
@@ -117,26 +131,33 @@
             <table class="table">
                 <thead class="thead-light">
                  <tr>
+                  <th scope="col" >STT</th>
                   <th scope="col" >Sản phẩm</th>
-                  <th scope="col">Đơn giá</th>
+                  <th scope="col" style="width: 120px">Đơn giá (vnd)</th>
                   <th scope="col">Chi tiết</th>
                 </tr>
                 </thead>
                 <tbody>
                   @if (isset($deleveringOrders))
+                  @php
+                    $t2 = 1
+                  @endphp
                   @foreach ($deleveringOrders as $order)
                   
                   @foreach ($order->products as $product)
                   <tr>
                     <td>
+                      {{$t2++}}
+                    </td>
+                    <td>
                       <img style="width: 100px;height: 110px" src="{{$product->feature_image_path}}" alt="">
                       <span>{{$product->name}}</span>
                     </td>
                     <td>
-                      <span>{{number_format($product->price)}} đ</span>
+                      <span style="float: right;">{{number_format($product->price)}}</span>
                     </td>
                     <td>
-
+                      <a class="btn btn-primary" href="{{ route('Mocafastfood.orderDetailHome', ['id'=> $order->id]) }}" role="button">Chi tiết</a>
                     </td>
 
                   </tr>

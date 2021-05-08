@@ -35,10 +35,12 @@
               </thead>
               <tbody>
  
-              
+                @php
+                  $stt = 1
+                @endphp
                 @foreach ($products as $product)
                   <tr>
-                    <th scope="row">{{ $product->id }}</th>
+                    <th scope="row">{{$stt++}}</th>
                     <td>{{ $product->name }}</td>
                     <td>{{ number_format($product->price) }}</td>
                     <td>
