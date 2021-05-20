@@ -8,7 +8,7 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    @include('partial.admin.content-header', ['name' => 'Role', 'key'=>'List'])
+    @include('partial.admin.content-header', ['name' => 'Vai trò/', 'key'=>'danh sách'])
     <!-- /.content-header -->
 
     <!-- Main content -->
@@ -22,10 +22,10 @@
             <table class="table table-hover">
               <thead>
                 <tr>
-                  <th scope="col">ID</th>
+                  <th scope="col">STT</th>
                   <th scope="col">Tên vai trò</th>
                   <th scope="col">Mô tả</th>
-                  <th scope="col">Action</th>
+                  <th scope="col">Thao tác</th>
                 </tr>
               </thead>
               <tbody>
@@ -38,8 +38,8 @@
                     <td>{{ $role->name }}</td>
                     <td>{{ $role->display_name }}</td>
                     <td>
-                      <a href="{{ route('roles.edit', ['id'=> $role->id]) }}" class="btn btn-default">Edit</a>
-                      <a href="" data-url="{{ route('roles.delete', ['id'=> $role->id]) }}" class="btn btn-danger action_delete">Delete</a>
+                      <a href="{{ route('roles.edit', ['id'=> $role->id]) }}" class="btn btn-default">Sửa</a>
+                      <a href="" data-url="{{ route('roles.delete', ['id'=> $role->id]) }}" class="btn btn-danger action_delete">Xóa</a>
                     </td>
                   </tr>
                 @endforeach

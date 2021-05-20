@@ -1,6 +1,6 @@
 <div class="list-group" style="font-size: 18px;">
   <a href="#" class="list-group-item list-group-item-action active">
-    Your Account
+    Tài khoản của bạn
   </a>
   <a href="{{ route('Mocafastfood.Account') }}" class="list-group-item list-group-item-action"><i class="fa fa-user-circle  
     " aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Tài khoản</a>

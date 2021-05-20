@@ -20,7 +20,7 @@
           <th>Người nhận</th>
           <th>SDT</th>
           <th>Tình trạng</th>
-          <th>Action</th>
+          <th>Thao tác</th>
         </tr>
       </thead>
       <tbody>

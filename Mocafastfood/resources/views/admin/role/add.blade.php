@@ -13,7 +13,7 @@
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
-  @include('partial.admin.content-header', ['name' => 'role', 'key'=>'Add'])
+  @include('partial.admin.content-header', ['name' => 'Vai trò/', 'key'=>'thêm'])
   <!-- /.content-header -->
 
   <!-- Main content -->

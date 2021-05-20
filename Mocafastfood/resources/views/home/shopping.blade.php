@@ -15,8 +15,8 @@
 <div class="breadcrumbs">
   <div class="container">
     <ol class="breadcrumb breadcrumb1  " data-wow-delay=".5s">
-      <li><a href="{{ route('Mocafastfood.index') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-      <li class="active">Products</li>
+      <li><a href="{{ route('Mocafastfood.index') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Trang chủ</a></li>
+      <li class="active">Sản phẩm</li>
     </ol>
   </div>
 </div>

@@ -24,9 +24,18 @@ Route::post('/', 'AdminController@postLogin');
 
 Route::prefix('adminMoca')->group(function () {
 
-	Route::get('/', function () {
-		return view('adminPage');
-	});
+	Route::get('/', [
+
+		'as' => 'adminMoca.chart',
+		'uses' => 'AdminController@drawChart'
+		//echo 'namng';
+		//return redirect()->to('adminMoca.chart');
+	]);
+
+	Route::get('/chart', [
+		'as' => 'adminMoca.chart',
+		'uses' => 'AdminController@drawChart'
+	]);
 
 	// source Admin_Route: routes/admin/
 	

@@ -7,7 +7,7 @@
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
-  @include('partial.admin.content-header', ['name' => 'Order', 'key'=>'OrderDetail'])
+  @include('partial.admin.content-header', ['name' => 'Đơn hàng/', 'key'=>'Chi tiết'])
   <!-- /.content-header -->
 
   <!-- Main content -->
@@ -45,24 +45,29 @@
         </div>
         
 
-        <div class="col-md-6">
+        <div class="col-md-8">
           <h4>Danh sách sản phẩm</h4>
           <table class="table table-hover">
             <thead>
               <tr>
-                <th scope="col">Tên sản phẩm</th>
-                <th scope="col">Số lượng</th>
-                <th scope="col">Đơn giá</th>
-
+                <th scope="col">STT</th>
+                <th scope="col" style="width: 250px; text-align: center;">Tên sản phẩm</th>
+                <th scope="col"  style="width: 120px; text-align: center;" >Số lượng</th>
+                <th scope="col" style="width: 165px; text-align: center;">Đơn giá (vnd)</th>
+                <th scope="col" style="width: 330px; text-align: center;">Thành tiền (vnd)</th>
               </tr>
             </thead>
             <tbody>
-
+              @php
+                $stt =1
+              @endphp
               @foreach ($orderitems as $orderitem)
               <tr>
-                <th scope="row">{{ $orderitem->id }}</th>
-                <td>{{ $orderitem->quantity }}</td>
-                <td>{{ number_format($orderitem->unitprice) }}</td>
+                <td>{{$stt++}}</td>
+                <td scope="row">{{ $orderitem->product->name }}</td>
+                <td style="text-align: center;">{{ $orderitem->quantity }}</td>
+                <td style="text-align: right; width: 119px">{{ number_format($orderitem->unitprice) }}</td>
+                <td style="text-align: right; width: 145px">{{ number_format($orderitem->unitprice*$orderitem->quantity) }}</td>
               </tr>
               @endforeach
               <tr>
@@ -77,8 +82,8 @@
           </table>
         </div> 
         <div class="col-md-12">
-          <a class="btn btn-success" href="{{ route('orders.confirmOrder', ['id'=> $order->id]) }}" role="button">Confirm</a>
-          <a class="btn btn-danger" href="{{ route('orders.delete', ['id'=> $order->id]) }}" role="button">Delete</a>
+          <a class="btn btn-success" href="{{ route('orders.confirmOrder', ['id'=> $order->id]) }}" role="button">Xác nhận</a>
+          <a class="btn btn-danger" href="{{ route('orders.delete', ['id'=> $order->id]) }}" role="button">Xóa</a>
         </div>       
 
         <!-- /.col-md-6 -->

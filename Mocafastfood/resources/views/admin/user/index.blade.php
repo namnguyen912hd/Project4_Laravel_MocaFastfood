@@ -8,7 +8,7 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    @include('partial.admin.content-header', ['name' => 'User', 'key'=>'List'])
+    @include('partial.admin.content-header', ['name' => 'Người dùng/', 'key'=>'danh sách'])
     <!-- /.content-header -->
 
     <!-- Main content -->
@@ -16,13 +16,16 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-12">
-            <a href="{{ route('users.create') }}" class="btn btn-success float-sm-right m-2">Add</a>
+            @can('user-add')
+              <a href="{{ route('users.create') }}" class="btn btn-success float-sm-right m-2">Thêm</a>
+            @endcan  
+            
           </div>
           <div class="col-md-12">
             <table class="table table-hover">
               <thead>
                 <tr>
-                  <th scope="col">ID</th>
+                  <th scope="col">STT</th>
                   <th scope="col">Tên</th>
                   <th scope="col">Số điện thoại</th>
                   <th scope="col">Email</th>
@@ -41,8 +44,14 @@
                     <td>{{ $user->telnumber }}</td>
                     <td>{{ $user->email }}</td>
                     <td>
-                      <a href="{{ route('users.edit', ['id'=> $user->id]) }}" class="btn btn-default">Edit</a>
-                      <a href=""  class="btn btn-danger action_delete" data-url = "{{ route('users.delete', ['id'=> $user->id]) }}">Delete</a>
+                      @can('user-edit')
+                          <a href="{{ route('users.edit', ['id'=> $user->id]) }}" class="btn btn-default">Sửa</a>
+                      @endcan
+                      @can('user-delete')
+                         <a href=""  class="btn btn-danger action_delete" data-url = "{{ route('users.delete', ['id'=> $user->id]) }}">Xóa</a>
+                      @endcan
+                      
+                     
                     </td>
                   </tr>
                 @endforeach

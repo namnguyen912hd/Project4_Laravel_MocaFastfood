@@ -17,14 +17,14 @@
 					<div id="login-box" class="col-md-12">
 						<form id="login-form" class="form" action="" method="post">
 							@csrf
-							<h3 class="text-center text-info">Login</h3>
+							<h3 class="text-center text-info">Đăng nhập</h3>
 							<div class="form-group">
-								<label for="username" class="text-info">Username:</label><br>
+								<label for="username" class="text-info">Tên đăng nhập:</label><br>
 								<input type="text" name="name" id="username" class="form-control">
 							</div>
 							<div class="form-group">
 								<label for="password" class="text-info">Password:</label><br>
-								<input type="text" name="password" id="password" class="form-control">
+								<input type="password" name="password" id="password" class="form-control">
 							</div>
 							<div class="form-group">
 								<label for="remember-me" class="text-info"><span>Remember me</span> <span><input id="remember-me" name="" type="checkbox"></span></label><br>

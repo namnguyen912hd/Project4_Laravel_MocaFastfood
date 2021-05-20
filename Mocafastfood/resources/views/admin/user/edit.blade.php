@@ -13,7 +13,7 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    @include('partial.admin.content-header', ['name' => 'user', 'key'=>'Edit'])
+    @include('partial.admin.content-header', ['name' => 'Người dùng/', 'key'=>'sửa'])
     <!-- /.content-header -->
 
     <!-- Main content -->

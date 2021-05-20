@@ -15,10 +15,10 @@
     <div class="contact-main">
      
       <div class="col-md-12 contact-in wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
-        <h4 class="info">Our Info </h4>
-        <p class="para1">Cửa hàng MocaFastfood là một trong những cửa hàng bán đồ ăn nhanh có quy mô lớn nhất tại tỉnh Hải Dương với các món ăn ngon, chất lượng phục vụ tốt, món ăn đảm bảo chất lượng an toàn vệ sinh, an toàn thực phẩm </p>
+        <h4 class="info">Thông tin cửa hàng </h4>
+        <p class="para1">Cửa hàng MocaFastfood là một trong những cửa hàng bán đồ ăn nhanh có quy mô lớn nhất tại tỉnh Hải Dương với các món ăn ngon, chất lượng phục vụ tốt, món ăn đảm bảo chất lượng an toàn vệ sinh, an toàn thực phẩm Cửa hàng MocaFastfood là một trong những cửa hàng bán đồ ăn nhanh có quy mô lớn nhất tại tỉnh Hải Dương với các món ăn ngon, chất lượng phục vụ tốt, món ăn đảm bảo chất lượng an toàn vệ sinh, an toàn thực phẩmCửa hàng MocaFastfood là một trong những cửa hàng bán đồ ăn nhanh có quy mô lớn nhất tại tỉnh Hải Dương với các món ăn ngon, chất lượng phục vụ tốt, món ăn đảm bảo chất lượng an toàn vệ sinh, an toàn thực phẩmCửa hàng MocaFastfood là một trong những cửa hàng bán đồ ăn nhanh có quy mô lớn nhất tại tỉnh Hải Dương với các món ăn ngon, chất lượng phục vụ tốt, món ăn đảm bảo chất lượng an toàn vệ sinh, an toàn thực phẩm</p>
         <div class="con-top">
-          <h4>Info</h4>
+          <h4>Thông tin</h4>
           <ul>
             <li>Cửa hàng MocaFastfood</li>
             <li>Chủ quán: Bùi Ngọc Anh</li>

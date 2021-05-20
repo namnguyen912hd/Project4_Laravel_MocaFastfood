@@ -15,8 +15,8 @@
 <div class="breadcrumbs">
   <div class="container">
     <ol class="breadcrumb breadcrumb1  " data-wow-delay=".5s">
-      <li><a href="{{ route('Mocafastfood.index') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-      <li class="active">Tag</li>
+      <li><a href="{{ route('Mocafastfood.index') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Trang chủ</a></li>
+      <li class="active">Sản phẩm </li>
     </ol>
   </div>
 </div>
@@ -56,7 +56,7 @@
                  <a class="item_add add_to_cart"
                  href="#"
                  data-url = "{{ route('Mocafastfood.addToCart', ['id'=> $product->id] ) }}"
-                 >add to cart </a>
+                 >Thêm vào giỏ hàng </a>
                  <?php
                }else{
                  ?>
@@ -64,7 +64,7 @@
                  {{-- href="{{ route('Mocafastfood.productdetail', ['id'=> $product->id]) }}" --}}
                  href="/" 
                  >
-               add to cart </a>
+               Thêm vào giỏ hàng </a>
                <?php 
              }
              ?>

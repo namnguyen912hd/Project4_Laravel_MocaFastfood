@@ -8,7 +8,7 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    @include('partial.admin.content-header', ['name' => 'Order', 'key'=>'List'])
+    @include('partial.admin.content-header', ['name' => 'Đơn hàng/', 'key'=>'danh sách'])
     <!-- /.content-header -->
 
     <!-- Main content -->
@@ -19,11 +19,11 @@
             <table class="table table-hover">
               <thead>
                 <tr>
-                  <th scope="col">ID</th>
+                  <th scope="col">STT</th>
                   <th scope="col">Tên khách hàng</th>
                   <th scope="col">Số điện thoại</th>
                   <th scope="col">Tình trạng</th>
-                  <th scope="col">Action</th>
+                  <th scope="col">Thao tác</th>
                  
                 </tr>
               </thead>
@@ -38,8 +38,8 @@
                     <td>{{ $order->telnumber }}</td>
                     <td>{{ $order->status }}</td>
                     <td>
-                      <a href="{{ route('orders.getOrderDetail', ['id'=> $order->id]) }}" class="btn btn-default">Detail</a>
-                      <a href="" data-url="{{ route('orders.delete', ['id'=> $order->id]) }}" class="btn btn-danger action_delete">Delete</a>
+                      <a href="{{ route('orders.getOrderDetail', ['id'=> $order->id]) }}" class="btn btn-default">Chi tiết</a>
+                      <a href="" data-url="{{ route('orders.delete', ['id'=> $order->id]) }}" class="btn btn-danger action_delete">Xóa</a>
                     </td>
                   </tr>
                 @endforeach

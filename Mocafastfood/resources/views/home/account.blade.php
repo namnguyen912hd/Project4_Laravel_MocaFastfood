@@ -10,7 +10,7 @@
 
 @section('content')
 
-<div class="container" style=" margin-top: 2em; padding-bottom: 2em">
+<div class="container" style=" margin-top: 2em; padding-bottom: 2em; min-height: 600px">
   <div class="row">
     <div class="col-md-12">
       <div class="col-md-8">
@@ -34,7 +34,7 @@
             <input type="text" name="email" class="form-control" placeholder="nhập email" value="{{$user->email}}">
           </div>
 
-          <button type="submit" class="btn btn-primary">Update</button>
+          <button type="submit" class="btn btn-primary">Cập nhập</button>
         </form>
       </div> 
       <div class="col-md-4">

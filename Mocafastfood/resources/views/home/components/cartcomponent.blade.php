@@ -8,7 +8,10 @@ if( $carts !=null){
     <div class="check_w3ls">
       <div class="d-sm-flex justify-content-between mb-4"  style="padding-bottom: 2em">
         <h4 class="mt-sm-0 mt-3">Giỏ hàng bạn có:
-          <span> Products</span>
+          @php
+           echo count($carts); 
+          @endphp
+          <span> sản phẩm</span>
         </h4>
       </div>
       <div class="checkout-right " >
@@ -17,34 +20,44 @@ if( $carts !=null){
             <tr>
               <th>STT</th>
               <th>Sản phẩm</th>
+              <th>Đơn giá (vnd)</th>
               <th>Số lượng</th>
-              <th>Tên sản phẩm</th>
-              <th>Đơn giá</th>
-              <th>Xóa</th>
+              <th>Thành tiền (vnd)</th>
+              <th>Thao tác</th>
             </tr>
           </thead>
           <tbody class="deleteCart_url" data-url='{{ route('Mocafastfood.deleteCart') }}'>
-
+            @php
+              $stt = 1
+            @endphp
             @foreach ($carts as $cart)
             <tr class="rem1">
-              <td class="invert">1</td>
-              <td class="invert-image" style="width: 30%">
-                <a href=""><img src="{{$cart['image_path']}}" alt=" " class="img-responsive" /></a>
+              <td class="invert">{{$stt++}}</td>
+              <td class="invert-image" style="width: 35%">
+                
+                  <a href="{{ route('Mocafastfood.productdetail', ['id'=> $cart['productID'] ]) }}" >
+                    <img style="    float: left;padding: 7px; margin-left: 32px; width: " src="{{$cart['image_path']}}"  />
+                  </a>
+                  <a style="float: left; padding-top: 48px; font-size: 19px" href="{{ route('Mocafastfood.productdetail', ['id'=> $cart['productID'] ]) }}">{{ $cart['name'] }}</a>
+                  
+                
+                
               </td>
+              <td class="invert">{{ $cart['price'] }}</td>
               <td class="invert">
                 <div class="quantity">
-                  <input type="number" class="quantity" name="" value="{{ $cart['quantity'] }}" min="1" style="width: 20%">
+                  <input type="number" class="quantity" name="" value="{{ $cart['quantity'] }}" min="1"  style="width: 45px">
                   <input type="text" class="productID" value="{{ $cart['productID'] }}" style="display: none;"> 
-                  <button type="button" class="btn btn-secondary update_cart">update</button>
                 </div>
               </td>
-              <td class="invert">{{ $cart['name'] }}</td>
-
-              <td class="invert">{{number_format($cart['price'])}}</td>
+              <td class="invert">
+                {{number_format($cart['price']*$cart['quantity'])}}
+              </td>
               <td class="invert">
                 <div class="rem">
+                  <button style="width: 51px; height: 34px" type="button" class="btn btn-secondary btn-warning update_cart"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
                  <a class="btn btn-danger delete_cart" href="#">
-                  Delete
+                  <i class="fa fa-times" aria-hidden="true"></i>
                 </a> 
               </div>
 
@@ -67,7 +80,7 @@ if( $carts !=null){
           <li>{{$cart['name']}} <i></i> <span>{{number_format($cart['price']*$cart['quantity'])}}&nbsp;đ</span></li>
           @endforeach
           <li>Phí ship <i></i> <span>17,000&nbsp;đ</span> </li>
-          <li  style="color: #D8703F; font-size: 20px">Total: <i></i> <span>{{number_format($total)}}&nbsp;đ</span></li>
+          <li  style="color: #D8703F; font-size: 20px">Tổng tiền: <i></i> <span>{{number_format($total)}}&nbsp;đ</span></li>
         </ul>
       </div>
 
@@ -117,7 +130,7 @@ if( $carts !=null){
                   </textarea>
                 </div>
               </div>
-              <button class="submit check_out">Order</button>
+              <button class="submit check_out">Đặt hàng</button>
             </div>
           </div>
         </form>

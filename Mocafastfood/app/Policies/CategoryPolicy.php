@@ -22,7 +22,7 @@ class CategoryPolicy
     }
 
     /**
-     * Determine whether the user can view the model.
+     * Determine whether the user can view the model. 
      *
      * @param  \App\User  $user
      * @param  \App\models\category  $category

@@ -12,7 +12,7 @@ class PermissionGateAndPolicyAccess
         $this->defineMenuGate();
         $this->defineProductGate();
         $this->defineRoleGate();
-        $this->defineUserGate();
+        $this->defineUserGate(); 
     }
 
     public function defineCategoryGate()

@@ -15,6 +15,8 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\addProductRequest;
 use DB;
+use App\Exports\ProductExport;
+use Excel;
 
 class ProductController extends Controller
 {
@@ -36,8 +38,9 @@ class ProductController extends Controller
 	}
 	public function index()
 	{
+		$htmlOption = $this->getCategory($parentID='');
 		$products = $this->product->latest('id')->paginate(5);
-		return view('admin.product.index', compact('products'));
+		return view('admin.product.index', compact('products','htmlOption'));
 	}
 
 	public function createProduct()
@@ -203,6 +206,32 @@ class ProductController extends Controller
 				'message'=>'fail'
 			], 500);
 		}
+	}
+
+
+	public function exportProductIntoExcel()
+	{
+		return Excel::download(new ProductExport,'products.xlsx');
+	}
+
+	public function getProductsbyCate(Request $request)
+	{
+
+		$products = $this->product->where('category_id', $request->categoryID)->paginate(5);
+		//dd($products);
+		$htmlOption = $this->getCategory($parentID='');
+		return view('admin.product.productsbyCate', compact('products','htmlOption'));
+
+	}
+
+	public function searchProduct(Request $request)
+	{
+		//dd($request->productName);
+		$Seachingproducts = $this->product->where('name', 'like', '%'. $request->productName .'%')->paginate(5);
+		//dd($products);
+		$htmlOption = $this->getCategory($parentID='');
+		return view('admin.product.searchingProduct', compact('Seachingproducts','htmlOption'));
+
 	}
 
 }

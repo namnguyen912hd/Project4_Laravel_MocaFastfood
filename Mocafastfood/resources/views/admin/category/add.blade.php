@@ -8,7 +8,7 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    @include('partial.admin.content-header', ['name' => 'category', 'key'=>'Add'])
+    @include('partial.admin.content-header', ['name' => 'Danh mục/', 'key'=>'thêm'])
     <!-- /.content-header -->
 
     <!-- Main content -->
@@ -32,7 +32,7 @@
                 </select>
               </div>
               
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" class="btn btn-primary">Thêm</button>
           </form>
         </div>    
       </div>

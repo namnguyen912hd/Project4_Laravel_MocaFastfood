@@ -10,26 +10,26 @@
                 <!--//logo-->
                 <div class="top-menu">
                     <span class="menu"> </span>
-                    <nav class="link-effect-4" id="link-effect-4">
+                    <nav class="link-effect-4" id="link-effect-4">  
                         <ul>
 
-                            <li class="active"><a data-hover="Home" href="{{ route('Mocafastfood.index') }}">Home</a></li>
-                            <li><a data-hover="About" href="{{ route('Mocafastfood.about') }}" >About</a></li>
-                            <li><a data-hover="Shopping" href="{{ route('Mocafastfood.shopping') }}" >Shopping</a></li>
+                            <li class="active"><a  href="{{ route('Mocafastfood.index') }}">Trang chủ</a></li>
+                            <li><a  href="{{ route('Mocafastfood.about') }}" >Liên hệ</a></li>
+                            <li><a  href="{{ route('Mocafastfood.products', ['id'=> 3]) }}" >Sản phẩm</a></li>
                             
                             
                             <?php
                             $user = Auth::user();
                             if($user != NULL){ 
                                ?>
-                               <li><a data-hover="Cart" href="{{ route('Mocafastfood.showCart') }}">Cart</a></li>
-                               <li><a data-hover="Order" href="{{ route('Mocafastfood.orderStatus') }}">Order</a></li>
-                               <li><a data-hover="Account" href="{{ route('Mocafastfood.Account') }}" >Account</a></li>
+                               <li><a  href="{{ route('Mocafastfood.showCart') }}">Giỏ hàng</a></li>
+                               <li><a  href="{{ route('Mocafastfood.orderStatus') }}">Đơn hàng</a></li>
+                               <li><a  href="{{ route('Mocafastfood.Account') }}" >Tài khoản</a></li>
                                <?php
                            }else{
                                ?>
-                               <li><a data-hover="LogIn" href="{{ route('Mocafastfood.LogIn') }}" >LogIn</a></li>
-                               <li><a data-hover="SignUp" href="{{ route('Mocafastfood.SignUp') }}" >SignUp</a></li>
+                               <li><a  href="{{ route('Mocafastfood.LogIn') }}" >Đăng nhập</a></li>
+                               <li><a  href="{{ route('Mocafastfood.SignUp') }}" >Đăng kí</a></li>
                                <?php 
                            }
                            ?>

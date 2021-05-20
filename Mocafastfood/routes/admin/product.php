@@ -36,6 +36,20 @@
 			'middleware'=>'can:product-delete'
 		]);
 
+		Route::get('/exportProducts', [
+			'as' => 'products.export',
+			'uses' => 'admin\ProductController@exportProductIntoExcel'
+		]);
+
+		Route::get('/getProductbyCate', [
+			'as' => 'products.getProductbyCate',
+			'uses' => 'admin\ProductController@getProductsbyCate'
+		]);
+		Route::get('/searchProduct', [
+			'as' => 'products.searchProduct',
+			'uses' => 'admin\ProductController@searchProduct'
+		]);
+
 	});
 
 

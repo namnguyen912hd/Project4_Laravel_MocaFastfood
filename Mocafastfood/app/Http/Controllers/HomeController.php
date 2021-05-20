@@ -59,15 +59,7 @@ class HomeController extends Controller
 			'password' => $request->your_pass
 		] ))  //,$remember
 		{
-			// $roles =Auth::user()->roles;
-			foreach (Auth::user()->roles  as $role) {
-				if ($role->name == "customer") {
-					return redirect()->to('MocaFastfood');
-				}
-				else {
-					return redirect()->to('adminMoca');
-				}
-			}
+			return redirect()->to('MocaFastfood');
 		}
 		else {
 			echo('sai tài khoản or mật khẩu');

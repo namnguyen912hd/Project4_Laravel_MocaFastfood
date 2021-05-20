@@ -8,7 +8,7 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    @include('partial.admin.content-header', ['name' => 'category', 'key'=>'List'])
+    @include('partial.admin.content-header', ['name' => 'Danh mục/', 'key'=>'danh sách'])
     <!-- /.content-header -->
 
     <!-- Main content -->
@@ -17,7 +17,7 @@
         <div class="row">
           <div class="col-md-12">
             @can('category-add')
-              <a href="{{ route('categories.create') }}" class="btn btn-success float-sm-right m-2">Add</a>
+              <a href="{{ route('categories.create') }}" class="btn btn-success float-sm-right m-2">Thêm</a>
             @endcan           
           </div>
           <div class="col-md-12">
@@ -26,7 +26,7 @@
                 <tr>
                   <th scope="col">STT</th>
                   <th scope="col">Tên loại</th>
-                  <th scope="col">Action</th>
+                  <th scope="col">Thao tác</th>
                  
                 </tr>
               </thead>
@@ -40,10 +40,10 @@
                     <td>{{ $category->name }}</td>
                     <td>
                       @can('category-edit')
-                          <a href="{{ route('categories.edit', ['id'=> $category->id]) }}" class="btn btn-default">Edit</a>
+                          <a href="{{ route('categories.edit', ['id'=> $category->id]) }}" class="btn btn-default">Sửa</a>
                       @endcan
                       @can('category-delete')
-                        <a href="" data-url="{{ route('categories.delete', ['id'=> $category->id]) }}" class="btn btn-danger action_delete">Delete</a>
+                        <a href="" data-url="{{ route('categories.delete', ['id'=> $category->id]) }}" class="btn btn-danger action_delete">Xóa</a>
                       @endcan
                       
                     </td>

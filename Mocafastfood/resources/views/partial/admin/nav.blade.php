@@ -28,12 +28,12 @@
             <a href="{{ route('categories.index') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Category               
+                Danh mục               
               </p>
             </a>
           </li>
 
-          {{-- <li class="nav-item">
+          <li class="nav-item">
             <a href="{{ route('menus.index') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
@@ -41,13 +41,13 @@
                 <!-- <span class="right badge badge-danger">New</span> -->
               </p>
             </a>
-          </li> --}}
+          </li>
 
           <li class="nav-item">
             <a href="{{ route('products.index') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Product
+                Sản phẩm
               </p>
             </a>
           </li>
@@ -56,7 +56,7 @@
             <a href="{{ route('users.index') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                User
+                Người Dùng
               </p>
             </a>
           </li>
@@ -65,7 +65,7 @@
             <a href="{{ route('settings.index') }}" class="nav-link">
               <i class="fa fa-product-hunt" aria-hidden="true"></i>
               <p>
-                Setting
+                Thông tin
               </p>
             </a>
           </li> --}}
@@ -74,7 +74,7 @@
             <a href="{{ route('roles.index') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Role
+                Vai trò
               </p>
             </a>
           </li>
@@ -83,7 +83,7 @@
             <a href="{{ route('permissions.create') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Permission
+                Sự cho phép
               </p>
             </a>
           </li> --}}
@@ -92,7 +92,7 @@
             <a href="{{ route('orders.index') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Order
+                Đơn hàng
               </p>
             </a>
           </li>
@@ -101,7 +101,7 @@
             <a href="{{ route('orders.getOrderShipping') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                shipping
+                Vận chuyển
               </p>
             </a>
           </li>

@@ -3,13 +3,13 @@ function actionDelete(event){
 	let urlRequest = $(this).data('url');
 	var that = $(this).parent().parent();
 	Swal.fire({
-		title: 'Are you sure?',
-		text: "You won't be able to revert this!",
+		title: 'Ban co chac khong?',
+		text: "ban khong the hoan tac!",
 		icon: 'warning',
 		showCancelButton: true,
 		confirmButtonColor: '#3085d6',
 		cancelButtonColor: '#d33',
-		confirmButtonText: 'Yes, delete it!'
+		confirmButtonText: 'xoa!'
 	}).then((result) => {
 		if (result.isConfirmed) {	
 			$.ajax({
@@ -21,7 +21,7 @@ function actionDelete(event){
 						that.remove();
 						Swal.fire(
 							'Deleted!',
-							'Your file has been deleted.',
+							'Xoa thanh cong',
 							'success'
 							)
 						

@@ -38,10 +38,7 @@
               </div>
             </div>
           </form>
-          @can('product-add')
-              <a href="{{ route('products.create') }}" class="btn btn-success float-sm-right m-2">Thêm</a>
-            @endcan
-          
+          <a href="{{ route('products.create') }}" class="btn btn-success float-sm-right m-2">Thêm</a>
         </div>
         
         <div class="col-md-12">
@@ -61,7 +58,7 @@
               @php
               $stt = 1
               @endphp
-              @foreach ($products as $product)
+              @foreach ($Seachingproducts as $product)
               <tr>
                 <th scope="row">{{$stt++}}</th>
                 <td>{{ $product->name }}</td>
@@ -72,16 +69,10 @@
                 <td>{{ optional($product->category) ->name }}</td>
 
                 <td>
-                  @can('product-edit')
-                         <a href="{{ route('products.edit', ['id'=> $product->id]) }}" class="btn btn-default">Sửa</a>
-                      @endcan
-                      @can('product-delete')
-                        <a data-url="{{ route('products.delete', ['id'=> $product->id]) }}" 
+                  <a href="{{ route('products.edit', ['id'=> $product->id]) }}" class="btn btn-default">Sửa</a>
+                  <a data-url="{{ route('products.delete', ['id'=> $product->id]) }}" 
                     href=""
                     class="btn btn-danger action_delete">Xóa</a>
-                      @endcan
-                  
-                  
                   </td>
                 </tr>
                 @endforeach
@@ -90,12 +81,10 @@
             </table>
           </div>        
           <div class="col-md-12">
-            <div class="col-md-8 float-sm-left m-2" style="float: left;">
-              {{ $products -> links() }}
-            </div>
-            <div class="col-md-2" style="float: left; margin-left: 130px">
-              <a  href="{{ route('products.export') }}" class="btn btn-info float-sm-right m-2">Xuất dữ liệu</a>
-            </div>
+            
+              {{ $Seachingproducts -> links() }}
+            
+            
           </div>
           
           

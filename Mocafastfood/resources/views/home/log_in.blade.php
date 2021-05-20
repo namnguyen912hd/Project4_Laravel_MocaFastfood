@@ -17,11 +17,11 @@
     <div class="signin-content">
       <div class="signin-image">
         <figure><img src="{{ asset('homepage/LogIn_SignIn/images/signin-image.jpg') }}" alt="sing up image"></figure>
-        <a href="#" class="signup-image-link">Create an account</a>
+        <a href="#" class="signup-image-link">Tạo tài khoản</a>
       </div>
 
       <div class="signin-form">
-        <h2 class="form-title">Log In</h2>
+        <h2 class="form-title">Đăng nhập</h2>
         <form  class="register-form" id="login-form" method="post">
           @csrf        
           <div class="form-group">
@@ -34,7 +34,7 @@
           </div>
           
           <div class="form-group">
-            <input style="float: left;width: 10%;" type="checkbox" name="" />&nbsp;<span>Rememeber me</span>
+            <input style="float: left;width: 10%;" type="checkbox" name="" />&nbsp;<span>ghi nhớ tài khoản</span>
           </div>
 
           <div class="form-group form-button">
@@ -42,7 +42,7 @@
           </div>
         </form>
         <div class="social-login">
-          <span class="social-label">Or login with:&nbsp;
+          <span class="social-label">hoặc Đăng nhập với:&nbsp;
             <i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i>&nbsp;
            <i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i>&nbsp;
            <i class="fa fa-google fa-2x" aria-hidden="true"></i>

@@ -16,7 +16,7 @@
 <div class="breadcrumbs">
   <div class="container">
     <ol class="breadcrumb breadcrumb1 animated wow " data-wow-delay=".5s">
-      <li><a href="{{ route('Mocafastfood.index') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+      <li><a href="{{ route('Mocafastfood.index') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Trang chủ</a></li>
       <li class="active"><a href="{{ route('Mocafastfood.products', ['id'=>  optional($product->category) ->id ]) }}">{{ optional($product->category) ->name }}</a></li>
       <li class="active">{{ $product->name }}</li>
     </ol>
@@ -93,7 +93,7 @@
                          <a class="item_add add_to_cart"
                          href="#"
                          data-url = "{{ route('Mocafastfood.addToCart', ['id'=> $product->id] ) }}"
-                         >add to cart </a>
+                         >Thêm vào giỏ hàng </a>
                          <?php
                        }else{
                          ?>
@@ -101,14 +101,14 @@
                          {{-- href="{{ route('Mocafastfood.productdetail', ['id'=> $product->id]) }}" --}}
                          href="{{ route('Mocafastfood.LogIn') }}" 
                          >
-                       add to cart </a>
+                       Thêm vào giỏ hàng </a>
                        <?php 
                      }
                      ?>
                    </div>
                    <div class="social">
                     <div class="social-left">
-                      <h5>Share on:</h5>
+                      <h5>Chia sẻ:</h5>
                     </div>
                     <div class="social-right">
                       <strong>
@@ -125,7 +125,7 @@
                 <div class="bootstrap-tab animated wow " data-wow-delay=".5s">
                   <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
                     <ul id="myTab" class="nav nav-tabs" role="tablist">
-                      <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Description</a></li>
+                      <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Mô tả</a></li>
                       {{-- <li role="presentation"><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">Reviews(2)</a></li> --}}
                     </ul>
                     <div id="myTabContent" class="tab-content">
@@ -198,7 +198,7 @@
             <br><br><br>
             <div class="single-related-products">
               <div class="container">
-                <h3 class="animated wow " data-wow-delay=".5s">Related Products</h3>
+                <h3 class="animated wow " data-wow-delay=".5s">Sản phẩm liên quan</h3>
 
                 <div class="new-collections-grids">
                   <div class="row">
@@ -229,7 +229,7 @@
                                <a class="item_add add_to_cart"
                                href="#"
                                data-url = "{{ route('Mocafastfood.addToCart', ['id'=> $relatedProduct->id] ) }}"
-                               >add to cart </a>
+                               >Thêm vào giỏ hàng </a>
                                <?php
                              }else{
                                ?>
@@ -237,7 +237,7 @@
                                {{-- href="{{ route('Mocafastfood.productdetail', ['id'=> $product->id]) }}" --}}
                                href="{{ route('Mocafastfood.LogIn') }}" 
                                >
-                             add to cart </a>
+                             Thêm vào giỏ hàng </a>
                              <?php 
                            }
                            ?>
