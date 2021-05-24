@@ -12,6 +12,7 @@ use App\models\orderItem;
 use App\models\product;
 use App\models\user;
 use App\Traits\DeleteModelTrait;
+use PDF;
 
 class OrderController extends Controller
 {
@@ -81,6 +82,27 @@ class OrderController extends Controller
 		$order->status = 'Đã giao';
 		$order->save();
 		return redirect() -> route('orders.getOrderShipping');
+	}
+
+	// invoice
+	public function generateInvoice($id){
+		
+		$order = $this->order->find($id);
+		$orderitems = $order->orderitems;
+		$total = 0;
+		foreach ($orderitems as $orderitem) {
+			$total += $orderitem->unitprice * $orderitem->quantity;
+		}
+		$total = $total + 17000;
+		$data = 
+         [
+            'order' => $order,
+            'orderitems' => $orderitems,
+            'total' => $total
+         ];
+       $pdf = PDF::loadView('admin.order.invoice', $data);
+   
+       return $pdf->download('donhang.pdf');
 	}
 
 

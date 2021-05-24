@@ -84,6 +84,7 @@
         <div class="col-md-12">
           <a class="btn btn-success" href="{{ route('orders.confirmOrder', ['id'=> $order->id]) }}" role="button">Xác nhận</a>
           <a class="btn btn-danger" href="{{ route('orders.delete', ['id'=> $order->id]) }}" role="button">Xóa</a>
+          <a class="btn btn-primary" href="{{ route('orders.generateInvoice', ['id'=> $order->id]) }}" role="button">In hóa đơn</a>
         </div>       
 
         <!-- /.col-md-6 -->

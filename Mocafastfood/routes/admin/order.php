@@ -39,6 +39,11 @@ Route::prefix('adminMoca/orders')->group(function () {
 			'uses' => 'admin\OrderController@deliveredOrder'
 		]);
 
+		Route::get('/generateInvoice/{id}', [
+			'as' => 'orders.generateInvoice',
+			'uses' => 'admin\OrderController@generateInvoice'
+		]);
+
 	});
 
 
